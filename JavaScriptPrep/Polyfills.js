@@ -1,7 +1,5 @@
 // flatten an array
 
-// const arr = [1, [2, 3], [4, [5, 6]]];
-
 // function flatten(arr) {
 //     const flat = arr.reduce((acc,curr) => acc.concat(Array.isArray(curr) ? flatten(curr) : curr),[]);
 //     return flat;
@@ -10,17 +8,6 @@
 // console.log(flatten(arr));
 
 // flatten an object
-
-// const obj = {
-//   user: {
-//     name: "Vidit",
-//     address: {
-//       city: "Bareilly",
-//       pin: 243001
-//     }
-//   },
-//   age: 25
-// };
 
 // function ObjectFlatten(obj, parent = '') {
 //   return Object.keys(obj).reduce((acc, curr) => {
@@ -61,29 +48,77 @@
 //     );
 // }
 
-// json stringify pollyfill for deep clone
-// const obj1 = { user: { role: 'admin' } };
-// function jsonStringifyPollyfill(value) {
-//     if (value === null) {
-//         return 'null';
-//     }  
-//     if (typeof value === 'string') {
-//         return `"${value.replace(/"/g, '\\"')}"`;
-//     }
-//     if (typeof value === 'number' || typeof value === 'boolean') {
-//         return String(value);
-//     }
-//     if (Array.isArray(value)) {
-//         const arrayElements = value.map((item) => jsonStringifyPollyfill(item)).join(',');
-//         return `[${arrayElements}]`;
-//     }
-//     if (typeof value === 'object') {
-//         const objectProperties = Object.entries(value)
-//             .map(([key, val]) => `"${key.replace(/"/g, '\\"')}":${jsonStringifyPollyfill(val)}`)
-//             .join(',');
-//         return `{${objectProperties}}`;
-//     }
-//     return undefined; // For unsupported types like functions and undefined
-// }  
-
 // console.log(jsonStringifyPollyfill(obj1));
+
+// Function.prototype.call
+
+// Function.prototype.myCall = function (thisArg, ...argArray) {
+//   return this.apply(thisArg,argArray);
+// };
+
+// Function.prototype.reduce
+
+// Array.prototype.myReduce = function (callbackFn, initialValue) {
+//     const noInitialValue = initialValue === undefined;
+//     const len = this.length;
+
+//     if (noInitialValue && len === 0) {
+//         throw new TypeError('Reduce of empty array with no initial value');
+//     }
+
+//     let acc = noInitialValue ? this[0] : initialValue;
+//     let startingIndex = noInitialValue ? 1 : 0;
+
+//     for (let k=startingIndex; k<len; k++) {
+//         if (Object.hasOwn(this,k)) {
+//             acc = callbackFn(acc,this[k],k,this);
+//         }
+//     }
+//     return acc;
+// };
+
+// Function.prototype.apply
+
+// Array.prototype.map = function (callback, thisArg) {
+//   var arr = [];
+//   for (var i = 0; i < this.length; i++) {
+//     if (i in this) arr[i] = callback.call(thisArg, this[i], i, this);
+//   }
+//   return arr;
+// };
+
+// Array.prototype.filter
+
+// Array.prototype.filter = function (callback, thisArg) {
+//   var arr = [];
+//   for (var i = 0; i < this.length; i++) {
+//     if (i in this && callback.call(thisArg, this[i], i, this)) arr.push(this[i]);
+//   }
+//   return arr;
+// };
+
+// Promisify
+
+// function promisify(func) {
+//   return function (...args) {
+//     return new Promise((resolve, reject) => {
+//       func.call(this, ...args, (err, result) =>
+//         err ? reject(err) : resolve(result),
+//     );
+//   });
+//   }
+// }
+
+// Function.prototype.bind
+
+// Function.prototype.myBind = function (context, ...bindArgs) {
+//   if (typeof this !== 'function') {
+//     throw new TypeError('Bind must be called on a function');
+//   }
+
+//   const fn = this;
+
+//   return function (...callArgs) {
+//     return fn.apply(context,[...bindArgs, ...callArgs]);
+//   };
+// };
