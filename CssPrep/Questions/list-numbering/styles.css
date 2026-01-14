@@ -1,0 +1,22 @@
+ol {
+  list-style: none;
+  padding-left: 1.5 em;
+  counter-reset: item;
+}
+
+ol li {
+  counter-increment: item;
+  margin: 0.25em 0;
+  position: relative;
+}
+
+ol li::before {
+  content: counters(item, ".") " ";
+  /* supports nested 1.1, 1.2.1 etc */
+  color: #f44336;
+  position: absolute;
+  left: -1.5em;
+  /* align numbers neatly */
+  white-space: pre;
+  /* keep the single space */
+}

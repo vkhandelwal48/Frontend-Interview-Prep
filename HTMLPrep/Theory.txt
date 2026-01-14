@@ -1,0 +1,56 @@
+async vs defer
+async and defer are attributes for script tags in HTML that help control when and how Javascipt files 
+are loaded and executed - improving page performance.
+
+async downloads the script in parallel(asynchronously) without blocking HTML parsing, but executes it immediately after
+download before HTML parsing is done
+
+<script src="script.js" async></script>
+Order is not guaranteed if multiple async scripts exist.
+
+defer also downloads the script asynchronously but executes it only after the HTML is fully parsed(rightBefore DOMContentLoaded).
+<script src="script.js" defer></script>
+
+Order is preserved (executed in the order they appear).
+
+prefetch vs preload vs preconnect vs prerender
+
+preconnect
+Tell the browser to establish early connections(DNS lookup, TCP handshake, TLS negotiation) to a domain before any request is
+made.
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+dns-prefetch
+Resolve domain's DNS early-- faster but weaker than preconnect.
+
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+No TCP or TLS setup (unlike preconnect).
+
+preload
+Tell the browser this resource is needed now -- fetch it early and with high priority
+<link rel="preload" href="/css/main.css" as="style">
+<link rel="preload" href="/js/app.js" as="script">
+<link rel="preload" href="/fonts/custom.woff2" as="font" crossorigin>
+
+prefetch
+Tell the browser to fetch resources in the background(low priority) for future navigations
+
+<link rel="prefetch" href="/next-page.js" as="script">
+Loaded in idle time, cached for later use.
+
+prerender
+Tells the browser to fully render a future page in the background. When the user navigates there -- it appears instantly
+
+<link rel="prerender" href="https://example.com/next-page">
+
+local storage vs session storage
+Local Storage
+1) Data Persistence: Data stored in local storage persists even after the browser is closed and reopened.
+2) Storage Limit: Typically has a larger storage limit (usually around 5-10 MB per domain).
+3) Scope: Data is scoped to the entire origin (protocol + domain + port) and is accessible across all tabs and windows of the same origin.
+
+Session Storage
+1) Data Persistence: Data stored in session storage is cleared when the browser tab or window is closed.
+2) Storage Limit: Typically has a smaller storage limit (usually around 5 MB per domain).
+3) Scope: Data is scoped to the specific tab or window and is not accessible across different tabs or windows, even if they share the same origin.

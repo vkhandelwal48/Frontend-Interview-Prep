@@ -1,0 +1,194 @@
+server side rendering in React
+Server-Side Rendering (SSR) in React is the process of rendering React components on the server
+and sending the fully rendered HTML to the client. This approach improves performance, SEO, and
+initial load times by delivering a complete HTML page to the browser, allowing it to display content
+before the JavaScript bundle is fully loaded and executed.
+
+React Performace
+1) Use Memo and UseCallback
+2) Virtual Lists
+3) Lazy Loading
+4) Pure Components
+5) React.memo
+6) use key props properly
+7) Avoid inline functions in render when possible
+
+Strict Mode in React
+
+1) Identifying components with unsafe lifecycle methods
+2) Warning about the usage of findDOMNode
+3) Warning about the usage of legacy context API
+
+Batching in React
+Batching in React refers to the process of grouping multiple state updates into a single render cycle.
+This optimization reduces the number of re-renders and improves performance by minimizing the
+amount of work React needs to do when updating the UI. React automatically batches state updates
+that occur within event handlers and lifecycle methods, ensuring that the component only re-renders
+once after all updates have been processed.
+
+Example of Batching
+let count=0;
+
+function updateCount(){
+    count+=1;
+    console.log("vidit1");
+}
+
+function handleClick(){
+    updateCount();
+    updateCount();
+    updateCount();
+    console.log("vidit2");
+}
+
+handleClick();
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [user, setUser] = useState('noUser'); 
+  
+  const handleClick = () => { 
+    setCount((count) => count + 1);
+    setUser('Vidit'); 
+    setCount(42);
+  }
+  return (
+  <div>
+    <h1>Hello, World!</h1>
+    <div>
+      <button onClick={handleClick}> count {count} </button> 
+    </div>
+  </div>
+  ) 
+}
+export default App;
+
+explain the whole rednering cycle here
+
+handleClick function is called when the button is clicked.
+Inside handleClick, setCount is called twice and setUser is called once.
+React batches these state updates together for performance optimization.
+After batching, React determines the final state values: count becomes 42 and user becomes 'Vidit'.
+React then triggers a re-render of the component with the updated state values.
+The component re-renders, and the UI reflects the new count value of 42.
+
+const handleClick = () => {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+}
+
+in this case if we click the button count will be incremented by 1 only because
+React batches the state updates and uses the value of count at the time of the click event for all updates.
+So, if count was 0 when the button was clicked, each setCount call effectively becomes setCount(0 + 1).
+As a result, after all four calls, count will be set to 1.
+To achieve the desired behavior of incrementing count by 4 with each click, you can use the functional form of setState:
+const handleClick = () => {
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+}
+
+In this example, when handleClick is called, updateCount is invoked three times.
+However, due to batching, the console will log "vidit1" three times followed by "vidit2".
+The final value of count will be 3, but the UI will only re-render once after all updates are complete.
+
+useRef Vs createRef
+Are used to access DOM elements or persist mutable values.
+Don't trigger re-renders when the .current value changes.
+But they differ in when and how they're created and used.
+
+useRef                      | createRef
+Functional Components      | Class Components
+Same ref across renders   | New Ref on each render
+
+What do we need for JSX to be rendered correctly in a browser?
+A transpiler such as Babel to transform JSX to regular JS.
+
+React Portals
+React Portals let you render a subtree of React components into a DOM node
+that exists outside the DOM hierarchy of the parent component. They are the
+official way to mount things like modals, tooltips, dropdowns, and toasts where
+DOM placement(z-indez, overflow) matters.
+
+Is there any way we can access the child components state in the parent component ?
+a. using callback functions
+b. using Refs with forwardRef & useImperativeHandle
+c. Lifting state Up (move state from child to parent and then pass to child)
+
+ForwardRef
+ForwardRef is a React utility that lets a parent component pass a ref down
+to a child component, so that the parent can directly access a DOM node or
+a method inside the child.
+
+repaint vs reflow
+Reflow (Layout):
+1) Reflow is the process of recalculating the layout of the entire webpage or a portion of it.
+2) It occurs when changes are made to the DOM that affect the size, position, or structure of elements (e.g., adding/removing elements, changing element dimensions, modifying CSS properties like width, height, margin, padding).
+3) Reflow is a more expensive operation in terms of performance because it requires the browser to recalculate the positions and sizes of elements and potentially re-render parts of the page.
+
+Repaint (Redraw):
+1) Repaint is the process of updating the visual appearance of elements on the screen without changing their layout.
+2) It occurs when changes are made to the visual properties of elements (e.g., changing colors, visibility, background images) that do not affect their size or position.
+3) Repaint is generally less expensive than reflow because it only involves updating the pixels on the screen without recalculating the layout of elements.
+
+Pure Component in React
+A Pure Component in React is a component that implements a shallow comparison of props and state to determine whether it should re-render.
+If the props and state have not changed, the Pure Component will not re-render, which can lead to performance optimizations by reducing unnecessary renders.
+Instead of re-rendering every time parent renders, a PureComponent re-renders only if its props or state change (shallow comparison).
+It adds a built in shouldComponentUpdate() method that performs this shallow comparison automatically.
+
+when to now use Pure Component
+1) When props or state are complex objects or arrays that may change frequently.
+2) When the component relies on external data or context that may change independently of props or state.
+3) When the component has side effects or relies on lifecycle methods that need to be executed on every render.
+4) When the performance gain from using PureComponent is negligible compared to the added complexity it introduces.
+
+What is Webpack?
+Webpack is a module bundler for Javascript applications.
+It takes all you project's files(Javascript, HTML, CSS, images) etc. and bundles them into
+optimized outfiles that browser can load efficiently load.
+
+Bundle Splitting
+When you build a modern web app (React, Vue, Angular, etc.),
+your bundler (like Webpack, Vite, Rollup, Parcel) combines all your JS, CSS, etc. into a bundle.
+
+Critical Path Rendering
+The Critical Path Rendering is the sequence of steps the browser takes to convert HTML, CSS, JavaScript into
+pixels on the screen.
+
+Steps in the Critical Rendering Path
+
+1) HTML Parsing -> DOM
+a. Browser Parses HTML to build Document Object Model.
+b. If it encounters an external stylesheet or script, it may pause parsing.
+
+2) CSS Parsing -> CSSOM
+a. Browser downloads all CSS files.
+b. Builds the CSS Object Model (rules for each node).
+
+3) Combine DOM + CSSOM -> Render Tree
+Browser merges both trees to know what to paint and how it looks
+Hidden elements(display:none) are excluded.
+
+4) Layout (Reflow)
+Calculates position and size of each element on screen.
+
+5) Paint
+Fills pixels into the screen based on layout and styles.
+
+Web Workers
+Web Workers allow Javascript code to run in a background thread, separate from the main(UI) thread.
+
+How They Work
+The main thread creates a worker.
+The worker runs in a seprate thread(no access to DOM Directly).
+They communicate via messages(using postMessage() and onmessage()).
+
+Service Worker (Special Case)
+A Service Worker is like a proxy between your web app and the network:
+a. Can intercept fetch requests
+b. Cache responses for offline access
+c. Enable background sync, push notifications.

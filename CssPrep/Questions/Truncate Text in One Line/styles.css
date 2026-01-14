@@ -1,0 +1,14 @@
+.truncate {
+  width: 200px;
+  /* Set the desired width */
+  white-space: nowrap;
+  /* Prevent text from wrapping to the next line */
+  overflow: hidden;
+  /* Hide any overflow text */
+  text-overflow: ellipsis;
+  /* Add ellipsis (...) at the end of the truncated text */
+  border: 1px solid #000;
+  /* Optional: Add a border for better visibility */
+  padding: 5px;
+  /* Optional: Add some padding for better appearance */
+}

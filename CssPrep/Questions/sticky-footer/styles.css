@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full height of viewport */
+}
+
+.body {
+  flex: 1; /* pushes footer down if content is short */
+  padding: 20px 10px;
+}
+
+.header {
+  background-color: #555;
+  color: #fff;
+  padding: 20px 10px;
+}
+
+.footer {
+  background-color: #555;
+  color: #fff;
+  padding: 20px 10px;
+}

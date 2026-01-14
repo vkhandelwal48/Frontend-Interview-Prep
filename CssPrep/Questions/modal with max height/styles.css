@@ -1,0 +1,30 @@
+.modals {
+  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+
+.modal-header {
+  background-color: #f44336;
+  color: #fff;
+  padding: 16px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.modal-body {
+  background-color: #2973af;
+  color: #fff;
+  padding: 20px;
+  font-size: 1em;
+}

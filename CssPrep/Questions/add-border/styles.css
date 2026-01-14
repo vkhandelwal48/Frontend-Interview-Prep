@@ -1,0 +1,6 @@
+.hairline {
+  width: 150px;
+  border-top: 0.5px solid black;
+  transform: scaleY(0.5);
+  transform-origin: 0 0;
+}

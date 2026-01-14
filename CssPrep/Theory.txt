@@ -1,0 +1,128 @@
+Box Model
+The CSS Box Model is a fundamental concept that describes how elements on a web page are structured and how their dimensions are calculated.
+Each element is represented as a rectangular box, which consists of four main components:
+
+1) Content: The innermost part of the box where text and images are displayed.
+2) Padding: The space between the content and the border. It creates space inside the box.
+3) Border: The edge of the box that surrounds the padding and content. It can have different styles, widths, and colors.
+4) Margin: The outermost space that separates the element from other elements on the page. It creates space outside the box.
+
+Different CSS selectors
+1) Universal Selector (*): Selects all elements on the page.
+2) Type Selector (element): Selects all elements of a specific type (e.g., div, p, h1).
+3) Class Selector (.class): Selects all elements with a specific class attribute.
+4) ID Selector (#id): Selects a single element with a specific ID attribute.
+5) Attribute Selector ([attribute=value]): Selects elements based on the presence or value of an attribute.
+6) Descendant Selector (ancestor descendant): Selects elements that are descendants of a specified ancestor element.
+7) Child Selector (parent > child): Selects elements that are direct children of a specified parent element.
+8) Adjacent Sibling Selector (element1 + element2): Selects an element that is immediately preceded by a specified sibling element.
+9) General Sibling Selector (element1 ~ element2): Selects all sibling elements that follow a specified sibling element.
+10) Pseudo-class Selector (element:pseudo-class): Selects elements based on their state or position (e.g., :hover, :first-child).
+11) Pseudo-element Selector (element::pseudo-element): Selects and styles specific parts of an element (e.g., ::before, ::after).
+
+Sass vs Scss
+Sass and SCSS are both syntaxes of the Sass (Syntactically Awesome Stylesheets) preprocessor for CSS.
+
+Sass
+1) Indentation-Based Syntax: Sass uses indentation to define code blocks instead of curly braces and semicolons.
+2) Concise Syntax: Sass has a more concise syntax, which can lead to shorter code.
+
+SCSS
+1) CSS-Compatible Syntax: SCSS is a superset of CSS, meaning that all valid CSS code is also valid SCSS code.
+2) Familiar Syntax: SCSS uses curly braces and semicolons, making it more familiar to those who are used to writing CSS.
+
+Reset CSS vs Normalize CSS
+
+Reset CSS is a stylesheet that removes all default browser styling from HTML elements.
+It sets all margins, paddings, borders, and font sizes to zero or a consistent baseline.
+The goal is to create a clean slate for styling, ensuring that all browsers start with the same basic styles.
+
+Normalize CSS, on the other hand, is a stylesheet that aims to make built-in browser styles
+consistent across different browsers. Instead of removing all styles, it preserves useful default styles
+while fixing inconsistencies and bugs in browser rendering. Normalize CSS provides a more balanced approach,
+allowing developers to build upon a consistent foundation without losing the benefits of default styles.
+
+border box vs content box
+In CSS, the box-sizing property determines how the total width and height of an element are calculated.
+
+content-box
+This is the default value for box-sizing. When using content-box, the width and height properties
+only apply to the content area of the element. Padding and borders are added outside of the specified width and height.
+
+border-box
+When using border-box, the width and height properties include the content area, padding, and borders.
+This means that the total size of the element remains consistent, regardless of the padding or border size.
+
+display: none vs visibility: hidden vs opacity: 0
+display: none
+1) The element is completely removed from the document flow.
+2) It does not take up any space on the page.
+3) It is not visible and cannot be interacted with.
+
+visibility: hidden
+1) The element is hidden but still takes up space in the document flow.
+2) It is not visible, but it can still affect the layout of other elements.
+3) It cannot be interacted with.
+
+opacity: 0
+1) The element is fully transparent but still takes up space in the document flow.
+2) It is not visible, but it can still affect the layout of other elements.
+3) It can still be interacted with, as it is still present in the DOM.
+
+z index
+The z-index property in CSS controls the vertical stacking order of elements that overlap each other.
+Elements with a higher z-index value are displayed in front of elements with a lower z-index value.
+
+opacity
+The opacity property in CSS controls the transparency level of an element.
+It takes a value between 0 and 1, where 0 is fully transparent and 1 is fully opaque.
+
+flexbox vs grid
+Flexbox and Grid are both CSS layout models used to create responsive and flexible web designs,
+but they have different use cases and capabilities.
+
+Flexbox
+1) One-Dimensional Layout: Flexbox is designed for one-dimensional layouts, either in a row (horizontal) or column (vertical).
+2) Content-Driven: Flexbox is ideal for distributing space among items in a container, especially when the size of the items is unknown or dynamic.
+3) Alignment and Distribution: Flexbox provides powerful alignment and distribution options for items within a container, such as centering, spacing, and wrapping.
+
+Grid
+1) Two-Dimensional Layout: Grid is designed for two-dimensional layouts, allowing you to control both rows and columns simultaneously.
+2) Layout-Driven: Grid is ideal for creating complex layouts with defined rows and columns, where the overall structure is known in advance.
+3) Explicit Positioning: Grid allows for explicit placement of items within the grid, making it easier to create complex designs with precise control over item positioning.
+
+CSS Positioning
+1) Static Positioning (position: static): This is the default positioning for all elements. Elements are positioned according to the normal document flow.
+2) Relative Positioning (position: relative): Elements are positioned relative to their normal position. You can use the top, right, bottom, and left properties to adjust their position.
+3) Absolute Positioning (position: absolute): Elements are positioned relative to their nearest positioned ancestor (an ancestor with a position other than static). If no such ancestor exists, they are positioned relative to the initial containing block (usually the viewport).
+4) Fixed Positioning (position: fixed): Elements are positioned relative to the viewport and remain in the same position even when the page is scrolled.
+5) Sticky Positioning (position: sticky): Elements are treated as relative until they reach a specified scroll position, at which point they become fixed. This allows elements to "stick" to a position as you scroll.
+
+CSS display properties
+1) block: The element is displayed as a block-level element, taking up the full width available and starting on a new line.
+2) inline: The element is displayed as an inline element, taking up only as much width as necessary and not starting on a new line.
+3) inline-block: The element is displayed as an inline-level block container. It allows setting width and height while still flowing with text.
+4) none: The element is not displayed at all (it is removed from the document flow).
+5) flex: The element is displayed as a block-level flex container, allowing for flexible layouts using the Flexbox model.
+6) grid: The element is displayed as a block-level grid container, allowing for two-dimensional layouts using the Grid model.
+7) table: The element is displayed as a table, similar to the HTML <table> element.
+8) list-item: The element is displayed as a list item, similar to the HTML <li> element.
+
+box sizing
+The box-sizing property in CSS determines how the total width and height of an element are calculated.
+It can take two main values:
+1) content-box: This is the default value. The width and height properties apply only to the content of the element. Padding and borders are added outside of the specified width and height.
+2) border-box: The width and height properties include the content, padding, and borders. This means that the total size of the element remains consistent, regardless of the padding or border size.
+
+
+flexbox properties
+1) display: flex; - Defines a flex container.
+2) flex-direction - Defines the direction of the flex items (row, column, row-reverse, column-reverse).
+3) justify-content - Aligns flex items along the main axis (flex-start, flex-end, center, space-between, space-around, space-evenly).
+4) align-items - Aligns flex items along the cross axis (flex-start, flex-end, center, baseline, stretch).
+5) flex-wrap - Controls whether flex items wrap onto multiple lines (nowrap, wrap, wrap-reverse).
+6) align-content - Aligns flex lines when there is extra space in the cross axis (flex-start, flex-end, center, space-between, space-around, stretch).
+7) flex-grow - Defines the ability of a flex item to grow if necessary.
+8) flex-shrink - Defines the ability of a flex item to shrink if necessary.
+9) flex-basis - Defines the default size of a flex item before the remaining space is distributed.
+10) order - Defines the order of flex items within the flex container.
