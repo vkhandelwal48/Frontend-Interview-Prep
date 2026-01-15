@@ -178,3 +178,62 @@
 // function removeWhiteSpaces(s){
 //   return s.replace(/\s/g,"");
 // }
+
+// Chainable Calculator
+
+// class Calculator {
+// 	constructor(value = 0) {
+// 		this.value = value;
+// 	}
+
+// 	add(n) {
+// 		this.value += n;
+// 		return this;
+// 	}
+
+// 	subtract(n) {
+// 		this.value -= n;
+// 		return this;
+// 	}
+
+// 	multiply(n) {
+// 		this.value *= n;
+// 		return this;
+// 	}
+
+// 	divide(n) {
+// 		if (n == 0) throw new Error("Divide by zero");
+// 		this.value /= n;
+// 		return this;
+// 	}
+
+// 	result() {
+// 		return this.value;
+// 	}
+// }
+
+// const calc = new Calculator(10);
+// const result = calc.add(5).subtract(3).multiply(4).divide(2).result();
+// console.log(result); // Output: 24
+
+// Second Largest Number in an Array
+
+// function secondLargest(arr) {
+//     if (arr.length < 2) return null;
+
+//     let first = -Number.MAX_SAFE_INTEGER;
+//     let second = -Number.MAX_SAFE_INTEGER;
+
+//     for (let i = 0; i < arr.length; i++) {
+//         if (arr[i] > first) {
+//             second = first;
+//             first = arr[i];
+//         } else if (arr[i] < first && arr[i] > second) {
+//             second = arr[i];
+//         }
+//     }
+
+//     return second === -Number.MAX_SAFE_INTEGER ? null : second;
+// }
+
+// console.log(secondLargest([12, 45, 6, 90, 43, 5])); // 45
