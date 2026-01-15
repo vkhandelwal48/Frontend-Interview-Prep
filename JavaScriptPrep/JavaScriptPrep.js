@@ -776,3 +776,31 @@
 // Callback hell refers to a situation in asynchronous programming where multiple nested callbacks
 // make the code difficult to read and maintain. It often occurs when dealing with multiple
 // asynchronous operations that depend on each other, leading to deeply nested structures.
+
+// Implicit vs Explicit Binding
+// Implicit Binding
+// Implicit binding occurs when a function is called as a method of an object. In this case, the this keyword inside the function refers to the object that the method is called on.
+
+// const obj = {
+//     name: 'Vidit',
+//     greet: function() {
+//         console.log(`Hello, ${this.name}`);
+//     }
+// };
+
+// obj.greet(); // 'this' refers to 'obj'
+
+// Explicit Binding
+// Explicit binding occurs when we explicitly set the value of this using methods like call(), apply(), or bind().
+
+// function greet() {
+//     console.log(`Hello, ${this.name}`);
+// }
+
+// const person = { name: 'Vidit' };
+
+// greet.call(person); // 'this' refers to 'person'
+// greet.apply(person); // 'this' refers to 'person'
+
+// const boundGreet = greet.bind(person);
+// boundGreet(); // 'this' refers to 'person'

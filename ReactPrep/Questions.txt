@@ -1,0 +1,276 @@
+Question 1
+How would you optimize a React application rendering 100k+ items in a list?
+
+1-> Virtualization: Use libraries like react-window or react-virtualized
+to render only the visible items in the viewport, drastically
+reducing DOM nodes and improving performance.
+
+2-> Pagination or Infinite Scrolling: Load and render items in chunks/pages
+instead of all at once.
+
+3-> Memoization: Use React.memo, useMemo, and useCallback to prevent unnecessary
+re-renders of list items and components.
+
+4-> Efficient Keys: Use stable, unique keys for list items to help React
+optimize rendering.
+
+5-> Web Workers: Offload heavy computations to web workers if needed.
+
+6-> Avoid Inline Functions/Objects: Define handlers and styles outside the
+render loop to avoid re-creating them on each render.
+
+7-> Lazy Loading Images/Content: Load images or heavy content only when
+needed (e.g., when items are visible).
+
+8-> Optimize Item Components: Make list item components as lightweight as
+possible.
+
+Question 2
+What strategies would you use to improve page load time for a global audience?
+1-> Use a Content Delivery Network (CDN): Serve static assets from edge servers close
+to users worldwide to reduce latency.
+
+2-> Optimize Images and Assets: Compress images, use modern formats (WebP/AVIF), and
+serve appropriately sized images for different devices.
+
+3-> Code Splitting & Lazy Loading: Split JavaScript bundles and load only what is needed
+for the initial view. Lazy load non-critical resources.
+
+4-> Minify and Compress Files: Minify JS/CSS/HTML and enable GZIP/Brotli compression on
+the server.
+
+5-> Server-Side Rendering (SSR) or Static Site Generation (SSG): Pre-render pages on the
+server or at build time to deliver HTML faster.
+
+6-> Prefetching & Preloading: Use resource hints (like <link rel="preload">) to prioritize
+critical resources.
+
+7-> Reduce Third-Party Scripts: Limit and optimize third-party scripts, as they can block
+rendering and increase load times.
+
+8-> Optimize API Calls: Use caching, reduce payload size, and use edge servers for APIs
+if possible.
+
+9-> Localize Content: Serve region-specific content and assets to minimize unnecessary
+data transfer.
+
+10-> Monitor and Test: Use tools like Lighthouse, WebPageTest, and Real User Monitoring
+(RUM) to identify and fix bottlenecks for different regions.
+
+Question 3
+You notice a memory leak in a production SPA—how do you identify and fix it?
+1-> Monitor Memory Usage: Use browser DevTools (Performance/Memory tab) to observe memory
+growth over time and take heap snapshots.
+
+2-> Identify Leaking Objects: Compare heap snapshots to find objects that are not being
+garbage collected.
+
+3-> Analyze Code: Look for common causes like unremoved event listeners, timers,
+subscriptions, or references held in closures or global variables.
+
+4-> Use Profiling Tools: Use tools like Chrome DevTools, React DevTools,
+or third-party profilers to trace memory allocation and component lifecycles.
+
+5-> Fix the Leak: Remove or clean up event listeners, cancel timers, unsubscribe from
+observables, and nullify references in cleanup functions (e.g., useEffect cleanup in React).
+
+6-> Test and Monitor: After applying fixes, retest in development and monitor production
+for memory usage stability.
+
+Question 4
+A component breaks when upgrading a library version—how do you manage dependencies?
+1-> Review Release Notes: Check the library’s changelog and migration guide for breaking
+changes or required code updates.
+
+2-> Pin Versions: Use exact or compatible version ranges in package.json to avoid unintentional
+upgrades.
+
+3-> Test Thoroughly: Run automated and manual tests after upgrades to catch issues early.
+
+4-> Use Dependency Management Tools: Use tools like npm, yarn, or pnpm to audit, update,
+and lock dependencies.
+
+5-> Incremental Upgrades: Upgrade libraries one at a time and verify the app after
+each change.
+
+6-> Rollback if Needed: If a critical issue is found, revert to the previous working version
+and report the issue to the library maintainers.
+
+7-> Monitor and Document: Keep track of dependency changes and document any workarounds or
+fixes applied during upgrades.
+
+Question 5
+How would you debug a performance bottleneck in a React app using DevTools?
+1-> Use React DevTools Profiler: Record interactions to identify slow components and see
+which ones re-render frequently or take the most time.
+
+2-> Analyze Component Tree: Look for unnecessary re-renders, deep component trees, or large
+props/state changes.
+
+3-> Use Chrome DevTools Performance Tab: Record a performance profile to spot long tasks,
+scripting, rendering, and painting bottlenecks.
+
+4-> Check for Expensive Operations: Identify slow functions, large loops, or heavy
+computations in the flame chart.
+
+5-> Optimize: Apply memoization (React.memo, useMemo, useCallback), code splitting, or
+refactor components to reduce re-renders.
+
+6-> Retest: After optimizations, profile again to confirm improvements.
+
+Question 6
+You need to migrate a legacy frontend codebase to a modern framework—what’s your plan?
+1-> Assess the Current Codebase: Audit features, dependencies, architecture, and pain points.
+Identify reusable logic and components.
+
+2-> Choose the Modern Framework: Select a framework (e.g., React, Vue, Angular) based on
+project needs, team expertise, and ecosystem.
+
+3-> Plan the Migration Strategy: Decide between a big-bang rewrite or incremental
+migration (e.g., using micro-frontends or embedding new components in the old app).
+
+4-> Set Up the New Project: Scaffold the new app with modern tooling, CI/CD, linting, and testing.
+
+5-> Migrate Core Functionality: Start with foundational features, shared utilities, and
+critical paths.
+
+6-> Refactor and Modularize: Break monolithic code into smaller, maintainable modules and
+components.
+
+7-> Test Thoroughly: Write and run tests to ensure feature parity and catch regressions.
+
+8-> Optimize and Polish: Address performance, accessibility, and UX improvements.
+
+9-> Cut Over and Monitor: Switch users to the new app, monitor for issues, and deprecate
+the legacy codebase.
+
+Question 7
+How do you ensure secure handling of sensitive user data on the client side?
+1-> Minimize Storage: Avoid storing sensitive data (like tokens, passwords, PII) in localStorage,
+sessionStorage, or cookies unless absolutely necessary.
+
+2-> Use Secure Cookies: If you must use cookies, set HttpOnly and Secure flags to prevent access
+from JavaScript and ensure transmission over HTTPS.
+
+3-> Transmit Over HTTPS: Always use HTTPS to encrypt data in transit between client and server.
+
+4-> Data Masking: Mask or obfuscate sensitive data in the UI and logs.
+
+5-> Avoid Exposing Secrets: Never expose API keys, secrets, or sensitive logic in client-side code.
+
+6-> Implement Proper Access Controls: Enforce authentication and authorization on the server side,
+not just the client.
+
+7-> Sanitize Inputs: Prevent XSS and injection attacks by sanitizing all user inputs and outputs.
+
+8-> Regularly Audit and Test: Use security tools and audits to identify and fix vulnerabilities
+in client-side code.
+
+Question 8
+Users report intermittent UI glitches in different browsers—how would you troubleshoot?
+1-> Reproduce the Issue: Test the app in all reported browsers and versions to observe the glitches
+firsthand.
+
+2-> Check Browser Compatibility: Use tools like Can I Use and browser DevTools to identify
+unsupported features or CSS/JS differences.
+
+3-> Review Console and Network Logs: Look for errors, warnings, or failed resource loads in
+each browser.
+
+4-> Validate CSS and HTML: Check for invalid or non-standard code that may render
+differently across browsers.
+
+5-> Isolate the Problem: Create minimal test cases to pinpoint the root cause.
+
+6-> Use Polyfills and Prefixes: Add necessary polyfills or vendor prefixes for cross-browser support.
+
+7-> Consult Documentation: Refer to browser and framework docs for known issues or workarounds.
+
+8-> Test on Real Devices: Use device labs or services like BrowserStack for accurate cross-browser
+testing.
+
+9-> Fix and Retest: Apply fixes, then retest across all affected browsers to confirm resolution.
+
+Question 9
+A critical UI feature is failing during peak traffic—how do you mitigate the issue?
+1-> Triage and Communicate: Quickly assess the impact, inform stakeholders, and display a
+user-friendly fallback or error message.
+
+2-> Roll Back or Hotfix: If possible, roll back to a stable version or deploy a hotfix to
+restore functionality.
+
+3-> Scale Infrastructure: Check for backend or API bottlenecks and scale resources
+(auto-scaling, CDN, caching) as needed.
+
+4-> Rate Limiting and Graceful Degradation: Implement rate limiting or degrade non-essential
+features to keep core functionality available.
+
+5-> Monitor and Log: Use monitoring tools to track errors, performance, and user impact in real time.
+
+6-> Root Cause Analysis: After mitigation, investigate the root cause and implement long-term fixes
+to prevent recurrence.
+
+Question 10
+How do you manage state in a complex app to avoid unnecessary re-renders?
+1-> State Colocation: Keep state as close as possible to the components that use it. Avoid lifting
+state up unnecessarily.
+
+2-> Split State: Divide state into smaller, independent pieces to minimize the scope of updates.
+
+3-> Use Context Wisely: Avoid putting frequently changing state in React Context; use it for static
+or rarely changing data.
+
+4-> Memoization: Use React.memo for components, useMemo for expensive calculations, and useCallback
+for stable function references.
+
+5-> Selectors and Derived State: Use selectors (e.g., with Redux or Zustand) to compute derived
+data efficiently and avoid passing unnecessary props.
+
+6-> Immutable Updates: Always update state immutably to help React detect changes correctly.
+
+7-> Batching and Throttling: Batch state updates and throttle/debounce rapid changes to reduce
+re-render frequency.
+
+8-> Use State Management Libraries: For large apps, use libraries like Redux, Zustand, or Recoil
+that offer fine-grained control over state updates.
+
+Question 11
+How would you implement a robust frontend monitoring and logging system?
+1-> Error Tracking: Integrate tools like Sentry, Bugsnag, or Rollbar to capture and report uncaught
+errors and exceptions.
+
+2-> Performance Monitoring: Use solutions like New Relic, Datadog, or Lighthouse to track page load
+times, resource usage, and user interactions.
+
+3-> Custom Logging: Implement a logging utility to capture important events, warnings, and user
+actions. Send logs to a centralized backend for analysis.
+
+4-> User Session Tracking: Record session data (with privacy in mind) to help reproduce and debug
+issues.
+
+5-> Real User Monitoring (RUM): Collect metrics from real users to identify issues in production
+environments.
+
+6-> Health Checks and Alerts: Set up automated health checks and alerting for critical failures or
+performance degradation.
+
+7-> Privacy and Compliance: Ensure sensitive data is masked or excluded from logs and monitoring
+tools.
+
+8-> Regular Review: Periodically review logs and monitoring dashboards to identify trends and
+proactively address issues.
+
+Question 12
+You need to render a large dataset without blocking the main thread—how do you approach it?
+1-> Virtualization: Use libraries like react-window or react-virtualized to render only visible
+items, reducing DOM nodes and rendering work.
+
+2-> Chunked Rendering: Break rendering into small batches using requestIdleCallback, setTimeout,
+or React’s concurrent features (e.g., startTransition) to yield control to the main thread.
+
+3-> Web Workers: Offload heavy data processing to Web Workers so the main thread remains responsive.
+
+4-> Lazy Loading: Load and render data incrementally as the user scrolls or interacts.
+
+5-> Optimize Components: Keep item components lightweight and use memoization to avoid unnecessary
+re-renders.
