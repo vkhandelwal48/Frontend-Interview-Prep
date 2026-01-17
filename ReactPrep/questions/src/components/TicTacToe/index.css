@@ -1,0 +1,14 @@
+.tic-tac-toe {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  row-gap: 16px;
+}
+
+.board {
+  display: grid;
+  width: 100px;
+  grid-template-columns: repeat(3, 1fr);
+}
