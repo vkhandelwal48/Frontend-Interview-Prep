@@ -690,7 +690,82 @@
 
 // await
 // The await operator is used to wait for a promise.It can only be used inside an async function
-// with Regular Javascript code. However it can be used on its own with Javascript modules. 
+// with Regular Javascript code. However it can be used on its own with Javascript modules.
+
+// Types of Promises
+// 1) Pending
+// 2) Fulfilled
+// 3) Rejected
+
+// Promise Concurrency Methods
+
+// Promise.all
+// Promise.all is a method that takes an iterable of promises as an input and returns a single promise
+// that resolves when all of the input promises have resolved or rejects if any of the input promises reject.
+
+// Example
+// const promise1 = Promise.resolve(3);
+// const promise2 = 42;
+// const promise3 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 100, 'foo');
+// });
+
+// Promise.race
+// Promise.race is a method that takes an iterable of promises as an input and returns a single promise
+// that resolves or rejects as soon as one of the input promises resolves or rejects, with the value or reason
+// from that promise.
+
+// Example
+// const promise1 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 500, 'one');
+// });
+
+// const promise2 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 100, 'two');
+// });
+
+// const promise3 = new Promise((resolve, reject) => {
+//   setTimeout(reject, 200, 'three');
+// });
+
+// Promise.any
+// Promise.any is a method that takes an iterable of promises as an input and returns a single promise
+// that resolves as soon as any of the input promises resolves. If all input promises reject, it rejects
+// with an AggregateError containing all rejection reasons.
+
+// Example
+// const promise1 = Promise.reject('Error 1');
+// const promise2 = Promise.reject('Error 2');
+// const promise3 = Promise.resolve('Success 3');
+
+// Promise.allSettled
+// Promise.allSettled is a method that takes an iterable of promises as an input and returns a single promise
+// that resolves when all of the input promises have settled (either fulfilled or rejected). The resolved value
+// is an array of objects describing the outcome of each promise.
+
+// Example
+// const promise1 = Promise.resolve('Success 1');
+// const promise2 = Promise.reject('Error 2');
+// const promise3 = Promise.resolve('Success 3');
+
+// Promise Chaining
+// Promise chaining is a technique used to handle multiple asynchronous operations in a sequential manner using promises.
+// It allows you to chain multiple .then() methods together, where each .then() method returns a new promise that can be further processed.
+
+// Example
+// fetch('https://api.example.com/data')
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log('Data received:', data);
+//     return fetch(`https://api.example.com/data/${data.id}/details`);
+//   })
+//   .then(detailsResponse => detailsResponse.json())
+//   .then(details => {
+//     console.log('Details received:', details);
+//   })
+//   .catch(error => {
+//     console.error('Error occurred:', error);
+//   });
 
 // Higher Order Functions
 // A function that takes another function as an argument or returns a function as its result.
