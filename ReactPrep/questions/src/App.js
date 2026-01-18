@@ -1,10 +1,10 @@
 import './App.css';
-import TicTacToe from './components/TicTacToe';
+import ProgressBar from './components/ProgressBar';
 
 function App() {
   return (
     <div>
-      <TicTacToe />
+      <ProgressBar />
     </div>
   );
 }
