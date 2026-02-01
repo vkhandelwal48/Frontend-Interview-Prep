@@ -274,3 +274,124 @@ or React’s concurrent features (e.g., startTransition) to yield control to the
 
 5-> Optimize Components: Keep item components lightweight and use memoization to avoid unnecessary
 re-renders.
+
+// “How would you optimize bundle size for a video streaming app?”
+Answer:
+
+1. Code Splitting Strategies
+   a) Route-based splitting:
+      - Separate bundles for login, browse, watch, profile pages
+      - Load only what's needed for current route
+      
+   b) Feature-based splitting:
+      - Video player as separate chunk (largest component)
+      - Search/recommendation engine as separate chunk
+      - User management features as separate chunk
+      
+   c) Vendor splitting:
+      - Separate chunk for video libraries (video.js, hls.js)
+      - UI framework chunk (React)
+      - Utility libraries chunk (lodash, moment)
+
+2. Lazy Loading Implementation
+   ```javascript
+   // Lazy load video player
+   const VideoPlayer = lazy(() => import('./VideoPlayer'));
+   
+   // Lazy load less critical features
+   const UserProfile = lazy(() => import('./UserProfile'));
+   const SearchFilters = lazy(() => import('./SearchFilters'));
+   
+   // Use Suspense for loading states
+   <Suspense fallback={<VideoPlayerSkeleton />}>
+     <VideoPlayer />
+   </Suspense>
+   ```
+
+3. Video-Specific Optimizations
+   a) Conditional loading of video codecs:
+      - Load H.264 decoder by default
+      - Lazy load AV1/VP9 decoders only when needed
+      
+   b) Progressive video player loading:
+      - Load basic controls first
+      - Load advanced features (subtitles, quality selector) on demand
+      
+   c) Streaming library optimization:
+      - Use modular video libraries (import only needed features)
+      - Consider lighter alternatives (plyr.js vs video.js)
+
+4. Tree Shaking & Dead Code Elimination
+   a) Use ES6 modules for better tree shaking
+   b) Import only needed functions from libraries:
+      ```javascript
+      // Bad
+      import _ from 'lodash';
+      
+      // Good  
+      import debounce from 'lodash/debounce';
+      ```
+   
+   c) Remove unused video formats/codecs
+   d) Eliminate unused UI components
+
+5. Image & Asset Optimization
+   a) Lazy load video thumbnails
+   b) Use WebP/AVIF for poster images
+   c) Implement progressive image loading
+   d) Use sprite sheets for UI icons
+   e) Compress and optimize video preview clips
+
+6. Dynamic Imports for Features
+   ```javascript
+   // Load subtitle parser only when needed
+   const loadSubtitles = async () => {
+     const { SubtitleParser } = await import('./SubtitleParser');
+     return new SubtitleParser();
+   };
+   
+   // Load analytics only for premium users
+   const loadAnalytics = async () => {
+     if (user.isPremium) {
+       await import('./VideoAnalytics');
+     }
+   };
+   ```
+
+7. Webpack Bundle Analysis
+   a) Use webpack-bundle-analyzer to identify large chunks
+   b) Analyze duplicate dependencies
+   c) Monitor bundle size in CI/CD pipeline
+   d) Set budget limits for different routes
+
+8. CDN & Caching Strategy
+   a) Serve video player from CDN
+   b) Cache vendor chunks longer (they change less)
+   c) Implement stale-while-revalidate for UI chunks
+   d) Use service workers for offline video metadata
+
+9. Performance Budgets
+   a) Main bundle: < 250KB (gzipped)
+   b) Video player chunk: < 400KB (gzipped)
+   c) Route chunks: < 150KB each (gzipped)
+   d) Total initial load: < 500KB (gzipped)
+
+10. Modern JS Delivery
+    a) Use differential serving (modern vs legacy bundles)
+    b) Leverage HTTP/2 push for critical chunks
+    c) Implement preloading for likely-needed chunks:
+       ```javascript
+       // Preload video player when user hovers over thumbnail
+       const preloadVideoPlayer = () => {
+         import(/* webpackChunkName: "video-player" */ './VideoPlayer');
+       };
+       ```
+
+11. Third-party Library Optimization
+    a) Replace heavy libraries with lighter alternatives
+    b) Use polyfill.io for conditional polyfills
+    c) Consider removing jQuery if using React
+    d) Use CDN versions of popular libraries
+
+This approach can reduce initial bundle size by 60-70% while maintaining excellent user experience 
+through strategic loading of features based on user interaction patterns.

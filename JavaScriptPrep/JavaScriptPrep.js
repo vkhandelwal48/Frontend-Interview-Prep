@@ -767,6 +767,31 @@
 //     console.error('Error occurred:', error);
 //   });
 
+// Handling async operations without race condition
+// race conditions occur when multiple promises resolve in an unpredictable order and
+// mutate the same state. I usually handle this by tracking the latest request using an ID or timestamp,
+// or by cancelling outdated async operations so only the latest promise can update the result.
+
+// example
+// let latestRequestId = 0;
+
+// function fetchData() {
+//   const requestId = ++latestRequestId;
+
+//   return fetch('https://api.example.com/data')
+//     .then(response => response.json())
+//     .then(data => {
+//       if (requestId === latestRequestId) {
+//         // Only update state if this is the latest request
+//         updateState(data);
+//       }
+//     });
+// }
+
+// function updateState(data) {
+//   console.log('Updating state with data:', data);
+// }
+
 // Higher Order Functions
 // A function that takes another function as an argument or returns a function as its result.
 

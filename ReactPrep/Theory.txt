@@ -192,3 +192,130 @@ A Service Worker is like a proxy between your web app and the network:
 a. Can intercept fetch requests
 b. Cache responses for offline access
 c. Enable background sync, push notifications.
+
+React Fiber
+React Fiber is a complete rewrite of React's core algorithm, introduced in React 16.
+It's the new reconciliation engine that fundamentally changed how React handles
+updates and rendering.
+
+What is React Fiber?
+Fiber refers to both:
+
+The architecture - A new way React schedules and executes work
+The data structure - Each component instance is represented as a "fiber" node
+
+Why was Fiber introduced?
+Problem with the old React (Stack Reconciler):
+
+->React updates were synchronous and blocking
+->Once an update started, it couldn't be interrupted
+->Large component trees caused the main thread to be blocked, leading to:
+  1) Dropped frames (janky animations)
+  2) Unresponsive user interactions
+  3) Poor user experience
+
+Key Features of Fiber:
+1. Incremental Rendering
+
+1-> Breaks work into small chunks
+2-> Can pause, resume, or abort work
+3-> Yields control back to the browser between chunks
+
+2. Priority-based Updates
+
+1-> Different types of updates have different priorities:
+  a) High Priority: User interactions (clicks, typing)
+  b) Low Priority: Data fetching, animations
+2-> High-priority updates can interrupt low-priority ones
+
+3. Time Slicing
+
+1-> Work is divided into time slices (typically 5ms)
+2-> After each slice, React checks if there are higher-priority tasks
+3-> Ensures the browser stays responsive
+
+How Fiber Works:
+
+// Before Fiber (blocking)
+function updateComponent() {
+  // This would block the main thread until complete
+  updateChild1();
+  updateChild2();
+  updateChild3(); // ... potentially thousands of updates
+}
+
+// With Fiber (interruptible)
+function fiberUpdateCycle() {
+  while (workInProgress && !shouldYield()) {
+    workInProgress = performUnitOfWork(workInProgress);
+  }
+  
+  if (workInProgress) {
+    // More work to do, schedule continuation
+    scheduleCallback(flushWork);
+  }
+}
+
+Fiber Architecture Phases:
+
+Phase 1: Render Phase (Interruptible)
+  a) Building the new fiber tree
+  b) Calling lifecycle methods like componentWillMount, render
+  c) Can be paused and resumed
+  d) No side effects
+
+Phase 2: Commit Phase (Synchronous)
+  a) Applying changes to the DOM
+  b) Calling componentDidMount, componentDidUpdate
+  c) Cannot be interrupted
+  d) Side effects occur here
+
+Benefits:
+1-> Better User Experience
+  a) Smooth animations (60fps)
+  b) Responsive interactions
+  c) No more blocking updates
+
+2-> Better Error Handling
+  a) Error boundaries work better
+  b) More granular error recovery
+
+3-> Future Features Enabled
+  a) Suspense for data fetching
+  b) Concurrent rendering
+  c) Time slicing
+
+Example of Priority:
+
+// High priority - user interaction
+onClick={() => setCounter(counter + 1)}
+
+// Low priority - data fetching
+useEffect(() => {
+  fetchData().then(setData);
+}, []);
+
+React Fiber ensures the button click gets processed immediately, even if data fetching is happening in the background.
+
+Fiber Tree Structure:
+Each component becomes a "fiber" node with properties like:
+
+child - first child fiber
+sibling - next sibling fiber
+return - parent fiber
+pendingProps - new props
+memoizedProps - previous props
+This structure allows React to traverse the tree efficiently and pause/resume work at any node.
+
+React Fiber is the foundation that enables modern React features like Hooks, Suspense, and Concurrent Mode,
+making React applications much more performant and user-friendly.
+
+memo()
+Use it as high up in the component tree as possible.
+-> blocking a component execution there will also block all child component executions.
+
+Checking props with memo() costs performance
+-> don't wrap it around all your components -- it will just add a lot of unnecessary checks.
+
+Don't use it on components where props will change frequently
+-> memo() would just perform a meaningless check in such cases(which costs performance).
