@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, memo, useCallback } from 'react';
 
 import IconButton from '../UI/IconButton.jsx';
 import MinusIcon from '../UI/Icons/MinusIcon.jsx';
@@ -33,13 +33,19 @@ const Counter = memo(function Counter({ initialCount }) {
 
   const [counter, setCounter] = useState(initialCount);
 
-  function handleDecrement() {
+  const handleDecrement = useCallback(function handleDecrement() {
     setCounter((prevCounter) => prevCounter - 1);
-  }
+  }, []);
 
-  function handleIncrement() {
+  const handleIncrement = useCallback(function handleIncrement() {
     setCounter((prevCounter) => prevCounter + 1);
-  }
+  }, []);
+
+  // useCallback ensures that the functions are not recreated on every render
+  // so that IconButton does not re-render unnecessarily.
+  // in dependency array we pass props and states that are used inside the function
+  // here we don't have any dependencies so we pass an empty array
+  // as setCounter is guaranteed to be stable by React
 
   return (
     <section className="counter">
