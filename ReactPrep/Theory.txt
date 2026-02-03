@@ -5,6 +5,21 @@ How React Updates the Website UI
 3-> Compare New Virtual DOM snapshot to Previous(Old) Virtual DOM Snapshot.
 4-> Identify & apply changes to the "Real DOM".
 
+Keys
+
+-> if we use index here instead of unique id then when two items
+   are added or removed from the start of the list, all items will
+   re-render because their indices will change and React will think
+   that they are different items.
+
+-> It also helps in state preservation of HistoryItem components
+   when items are added or removed from the list.
+   e.g. if we select an item and then add a new item at the start,
+   the selected item will remain selected because its key (id)
+   remains the same.
+-> If we had used index as key, the selected item would have changed
+   because all indices would have shifted.
+
 server side rendering in React
 Server-Side Rendering (SSR) in React is the process of rendering React components on the server
 and sending the fully rendered HTML to the client. This approach improves performance, SEO, and
