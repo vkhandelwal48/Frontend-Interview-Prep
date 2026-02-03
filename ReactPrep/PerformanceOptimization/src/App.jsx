@@ -12,6 +12,20 @@ function App() {
 
   function handleSetCount(newCount) {
     setChosenCount(newCount);
+    // this state update is scheduled by React
+    // React will re-render App component
+    // During the re-render, the new chosenCount value will be used
+    // to set the key prop of the first Counter component
+
+    // setChosenCount((prevChosenCount) => prevChosenCount + 1);
+    // This demonstrates that multiple state updates in the same event
+    // handler are batched together by React.
+    // The final chosenCount after this function completes will be
+    // the previous chosenCount + 1
+
+    // both state updates are scheduled, but only one re-render will occur
+    // after this function completes because React batches state updates
+    // console.log(chosenCount); // logs the old chosenCount value
   }
 
   return (
