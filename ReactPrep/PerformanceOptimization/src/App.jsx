@@ -19,7 +19,9 @@ function App() {
       <Header />
       <main>
         <ConfigureCounter onSet={handleSetCount}/>
-        <Counter initialCount={chosenCount} />
+        <Counter key={chosenCount} initialCount={chosenCount} />
+        // key value here ensures that the Counter component is remounted
+        // whenever the chosenCount changes, resetting its internal state.
         <Counter initialCount={0} />
       </main>
     </>
