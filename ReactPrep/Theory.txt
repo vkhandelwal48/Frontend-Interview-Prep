@@ -1,3 +1,10 @@
+How React Updates the Website UI
+
+1-> Creating a Component Tree
+2-> Creating Virtual Snapshot of the target HTML Code.
+3-> Compare New Virtual DOM snapshot to Previous(Old) Virtual DOM Snapshot.
+4-> Identify & apply changes to the "Real DOM".
+
 server side rendering in React
 Server-Side Rendering (SSR) in React is the process of rendering React components on the server
 and sending the fully rendered HTML to the client. This approach improves performance, SEO, and
