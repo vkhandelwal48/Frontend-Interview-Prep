@@ -6,6 +6,7 @@ export default function Player() {
 
   function handleClick() {
     setEnteredPlayerName(playerName.current.value);
+    playerName.current.value = ""; // changing dom value directly, not recommended but works for this example
   }
 
   return (
