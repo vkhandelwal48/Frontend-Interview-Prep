@@ -341,3 +341,6 @@ Checking props with memo() costs performance
 
 Don't use it on components where props will change frequently
 -> memo() would just perform a meaningless check in such cases(which costs performance).
+
+Refs
+-> They allow us to access all methods and properties attached to the element.
