@@ -1,10 +1,10 @@
 import { useState } from "react";
 
+let timer;
 export default function TimerChallenge({ title, targetTime }) {
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
 
-  let timer;
   function handleStart() {
     setTimerStarted(true);
     timer = setTimeout(() => {
@@ -35,3 +35,9 @@ export default function TimerChallenge({ title, targetTime }) {
 // it would not clear the correct timer, leading to unexpected behavior. To fix this,
 // we can use a ref to store the timer ID, which will persist across renders and allow us
 // to correctly clear the timeout when needed.
+
+// now we have defined timer variable outside the component, so it will not be re-initialized on every render,
+// and we can use it to store the timeout ID. When the component re-renders, the timer variable will
+// still hold the correct timeout ID, allowing us to clear the timeout correctly when the user clicks the 
+// "Stop Challenge" button but in case of multiple TimerChallenge components, they will all share the same
+// timer variable, which can lead to conflicts and unexpected behavior.
