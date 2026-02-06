@@ -5,12 +5,10 @@ export default function TimerChallenge({ title, targetTime }) {
   const timer = useRef();
   const dialog = useRef();
   const [timerStarted, setTimerStarted] = useState(false);
-  const [timerExpired, setTimerExpired] = useState(false);
 
   function handleStart() {
     setTimerStarted(true);
     timer.current = setTimeout(() => {
-      setTimerExpired(true);
       dialog.current.showModal();// standard browser feature
     }, targetTime * 1000);
   }
