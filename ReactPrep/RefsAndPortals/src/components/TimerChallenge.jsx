@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-let timer;
 export default function TimerChallenge({ title, targetTime }) {
+  const timer = useRef();
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
 
   function handleStart() {
     setTimerStarted(true);
-    timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
       setTimerExpired(true);
     }, targetTime * 1000);
   }
 
   function handleStop() {
-    clearTimeout(timer);
+    clearTimeout(timer.current);
   }
   return <section className="challenge">
     <h2>{title}</h2>
@@ -41,3 +41,8 @@ export default function TimerChallenge({ title, targetTime }) {
 // still hold the correct timeout ID, allowing us to clear the timeout correctly when the user clicks the 
 // "Stop Challenge" button but in case of multiple TimerChallenge components, they will all share the same
 // timer variable, which can lead to conflicts and unexpected behavior.
+
+// To avoid this, we can use a ref to store the timer ID for each instance of the TimerChallenge component,
+// ensuring that each component has its own timer and can manage it independently.
+// as timer is not a state variable, changes to it will not trigger a re-render of the component,
+// which is why we can use it to store the timer ID without causing unnecessary re-renders.
