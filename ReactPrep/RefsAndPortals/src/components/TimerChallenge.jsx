@@ -9,7 +9,7 @@ export default function TimerChallenge({ title, targetTime }) {
   function handleStart() {
     setTimerStarted(true);
     timer.current = setTimeout(() => {
-      dialog.current.showModal();// standard browser feature
+      dialog.current.open();// standard browser feature
     }, targetTime * 1000);
   }
 
