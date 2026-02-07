@@ -374,3 +374,18 @@ use
 2-> You need conditional context access.
 3-> You're also working with promises/async data.
 4-> You want the latest React patterns.
+
+Consuming in Context API
+When you access context value in a component and that value then changes
+the component function accesses the context value will get re-executed by
+React. Just as the component function will also get re-executed if it would
+be using some internal state. If it was updated or its parent component 
+were executed again.
+
+Just as the component function gets re-executed by React in such
+situations it also gets re-excuted if the component function uses
+the useContext hook and therefore is connected to some context value
+and that value changes and ofcourse the component must be executed again
+in such situations because otherwise the UI wouldn't be updated and
+that's why React will re-execute component function if its connected
+context value changes.
