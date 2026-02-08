@@ -389,3 +389,6 @@ and that value changes and ofcourse the component must be executed again
 in such situations because otherwise the UI wouldn't be updated and
 that's why React will re-execute component function if its connected
 context value changes.
+
+What's a Reducer?
+A function that reduce one or more complex values to a simple one.
