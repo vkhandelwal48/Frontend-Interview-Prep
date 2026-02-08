@@ -392,3 +392,25 @@ context value changes.
 
 What's a Reducer?
 A function that reduce one or more complex values to a simple one.
+
+React features you might not be able to use
+
+1-> React Server Components (RSC)
+2-> Server Actions
+3-> use() with promises
+
+#important
+Special project setup required
+Not supported by "standard" React projects (eg-> created via vite)
+
+Why is a Special Setup Needed?
+Some features require a server-side environment Code therefore must be
+split (by the build process / code bundler process).
+
+Client-side Code
+1-> Executed on the client-side
+2-> Like in most React projects(eg created via Vite)
+
+Non Client-side Code
+1-> Executed on the server-side (or during build process)
+2-> Special project setup required.
