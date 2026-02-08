@@ -414,3 +414,21 @@ Client-side Code
 Non Client-side Code
 1-> Executed on the server-side (or during build process)
 2-> Special project setup required.
+
+React Server Components
+-> React components that are never executed on the client!
+-> Can directly include client-components in their JSX code.
+
+Advantage
+1-> less code has to be sent to the client
+2-> We can fetch data on the server. Allow us to send finished pages.
+3-> Can be async function
+
+Client Components
+-> Rendered on the server and client
+-> Marked via "use-client" directive
+-> Can't directly include client-components in their JSX code.
+(if we try to do so it converts server component to client component)
+
+Advantage
+1-> Might need to use some client component feature(eg-> useState).
