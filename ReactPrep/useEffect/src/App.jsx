@@ -10,6 +10,7 @@ import { sortPlacesByDistance } from './loc.js';
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
+  const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState([]);
 
   navigator.geolocation.getCurrentPosition((position) => {
@@ -18,6 +19,11 @@ function App() {
       position.coords.latitude,
       position.coords.longitude
     );
+
+    setAvailablePlaces(sortedPlaces);
+    // This state update will cause infinite re-rendering because it is being called inside the getCurrentPosition callback,
+    // which is executed every time the component renders. To fix this, you can use the useEffect hook to ensure that the
+    // geolocation is only fetched once when the component mounts.
   });
 
   // Its a side effect as it not directly related to rendering the UI,
@@ -81,7 +87,7 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
           onSelectPlace={handleSelectPlace}
         />
       </main>
