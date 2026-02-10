@@ -440,6 +440,8 @@ useEffect
 The useEffect code will not be executed right away during the initial render.
 Instead, it will be scheduled to run after the render is complete.
 
+Overuse of useEffect is not good.
+
 Dependency Array
 1-> with no values in dependency array. React never re-executes this effect after the initial render.
 2-> if we remove dependency array then the effect will run after every render.
