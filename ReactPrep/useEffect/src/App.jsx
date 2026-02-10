@@ -5,11 +5,29 @@ import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
+import { sortPlacesByDistance } from './loc.js';
 
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    const sortedPlaces = sortPlacesByDistance(
+      AVAILABLE_PLACES,
+      position.coords.latitude,
+      position.coords.longitude
+    );
+  });
+
+  // Its a side effect as it not directly related to rendering the UI,
+  // but it is related to the component's lifecycle and can cause changes to the component's state or behavior.
+  // It is a side effect because it interacts with the browser's geolocation API,
+  // which is an external system outside of React's rendering process.
+  
+  // navigator.geolocation is available in the browser, but not in Node.js environment.
+  // This line will not work in a Node.js environment and will throw an error.
+  // If you want to use geolocation features, you need to run this code in a browser environment.
 
   function handleStartRemovePlace(id) {
     modal.current.open();

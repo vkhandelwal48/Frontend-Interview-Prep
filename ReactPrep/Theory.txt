@@ -432,3 +432,6 @@ Client Components
 
 Advantage
 1-> Might need to use some client component feature(eg-> useState).
+
+What are Side Effects?
+Side Effects are "tasks" that don't impact the current component render cycle.
