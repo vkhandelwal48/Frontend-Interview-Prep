@@ -446,9 +446,18 @@ Dependency Array
 1-> with no values in dependency array. React never re-executes this effect after the initial render.
 2-> if we remove dependency array then the effect will run after every render.
 3-> pass state or props used inside as dependency.
+4-> a-> There is a problem in adding functions as dependencies. As there a danger of creating an infinite
+        loop.
+    b-> Functions in Javascript are just values. Specifically they are objects. These are recreated every
+        time this app component function executes. Every recreation is not considered same.
+    c-> Pass function dependecies only when using useCallback with functions
 
 cleanup function
 1-> runs when the component unmounts.
 2-> Any dependency in the array changes -> previous cleanup runs, then effect executes again.
 3-> Strict Mode(dev only) -> React intentionally runs effect -> cleanup -> effect once extra
     to detect side-effect bugs.
+
+UseCallback
+It returns that function which you wrapped. It ensures that function is not recreated instead
+it stores it internally in memory and reuses that store function whenever component function executes again.
