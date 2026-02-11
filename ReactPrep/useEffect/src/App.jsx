@@ -12,8 +12,8 @@ const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
     AVAILABLE_PLACES.find((place) => place.id === id)
   );
 function App() {
-  const modal = useRef();
   const selectedPlace = useRef();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
 
@@ -38,12 +38,12 @@ function App() {
   // If you want to use geolocation features, you need to run this code in a browser environment.
 
   function handleStartRemovePlace(id) {
-    modal.current.open();
     selectedPlace.current = id;
+    setModalIsOpen(true);
   }
 
   function handleStopRemovePlace() {
-    modal.current.close();
+    setModalIsOpen(false);
   }
 
   function handleSelectPlace(id) {
@@ -68,7 +68,7 @@ function App() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
-    modal.current.close();
+    setModalIsOpen(false);
 
     const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
     localStorage.setItem(
@@ -79,7 +79,7 @@ function App() {
 
   return (
     <>
-      <Modal ref={modal}>
+      <Modal open={modalIsOpen}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}

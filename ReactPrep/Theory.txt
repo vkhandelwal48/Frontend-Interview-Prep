@@ -445,3 +445,4 @@ Overuse of useEffect is not good.
 Dependency Array
 1-> with no values in dependency array. React never re-executes this effect after the initial render.
 2-> if we remove dependency array then the effect will run after every render.
+3-> pass state or props used inside as dependency.
