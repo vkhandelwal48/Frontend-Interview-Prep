@@ -446,3 +446,9 @@ Dependency Array
 1-> with no values in dependency array. React never re-executes this effect after the initial render.
 2-> if we remove dependency array then the effect will run after every render.
 3-> pass state or props used inside as dependency.
+
+cleanup function
+1-> runs when the component unmounts.
+2-> Any dependency in the array changes -> previous cleanup runs, then effect executes again.
+3-> Strict Mode(dev only) -> React intentionally runs effect -> cleanup -> effect once extra
+    to detect side-effect bugs.
