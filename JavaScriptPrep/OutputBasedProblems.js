@@ -27,3 +27,10 @@
 
 // Array b has 4 elements: 1, (empty), (empty), and 5. 
 // The empty slots are counted in the length, so the length is 4.
+
+console.log("3" - 3);// Outputs: 0
+console.log(3 - "3");// Outputs: 0
+console.log("3" + 3);// Outputs: "33"
+console.log(3 + "3");// Outputs: "33"
+console.log("Hell" - "1");// Outputs: NaN
+console.log("Hell" + "1");// Outputs: "Hell1"
