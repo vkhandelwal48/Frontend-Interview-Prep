@@ -237,3 +237,34 @@
 // }
 
 // console.log(secondLargest([12, 45, 6, 90, 43, 5])); // 45
+
+// Number of Words in a String
+
+// function countWords(s) {
+//     const n = s.length;
+//     let count = 0;
+//     for (let i = 0; i < n; i++) {
+//         if (s[i] !== ' ' && (i === 0 || s[i - 1] === ' ')) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+// console.log(countWords("  Hello Vidit, how are    you?  ")); // 5
+
+// Sum of Two Number of an Array
+
+// function hasPairWithSum(arr, sum) {
+//     const seen = new Set();
+//     for (let num of arr) {
+//         if (seen.has(sum-num)) {
+//             return true;
+//         }
+//         seen.add(num);
+//     }
+//     return false;
+// }
+
+// console.log(hasPairWithSum([1, 2, 3, 4, 5], 9)); // true (4 + 5)
+// console.log(hasPairWithSum([1, 2, 3, 4, 5], 10)); // false
