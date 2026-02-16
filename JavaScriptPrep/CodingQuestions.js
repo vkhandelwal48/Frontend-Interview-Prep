@@ -268,3 +268,23 @@
 
 // console.log(hasPairWithSum([1, 2, 3, 4, 5], 9)); // true (4 + 5)
 // console.log(hasPairWithSum([1, 2, 3, 4, 5], 10)); // false
+
+// First Unique Character in a String
+
+// var firstUniqChar = function(s) {
+//     const map = new Map();
+//     for(let c of s) {
+//         if (map.has(c)) {
+//             const val = map.get(c);
+//             map.set(c,val+1);
+//         } else {
+//             map.set(c,1);
+//         }
+//     }
+//     for(let i = 0; i < s.length; i++) {
+//         if (map.get(s.charAt(i)) === 1) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// };
