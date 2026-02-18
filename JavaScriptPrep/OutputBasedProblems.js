@@ -1,3 +1,5 @@
+//Question1
+
 // greetings(); //----- Outputs: "vidit2"
 
 // var greetings = function() {
@@ -12,6 +14,7 @@
 
 // greetings(); //----- Outputs: "vidit1"
 
+// Question2
 // const a = [,,,,];
 // console.log(a.length); // 4
 // console.log(a[0]); // undefined
@@ -28,9 +31,25 @@
 // Array b has 4 elements: 1, (empty), (empty), and 5. 
 // The empty slots are counted in the length, so the length is 4.
 
+// Question3
+
 // console.log("3" - 3);// Outputs: 0
 // console.log(3 - "3");// Outputs: 0
 // console.log("3" + 3);// Outputs: "33"
 // console.log(3 + "3");// Outputs: "33"
 // console.log("Hell" - "1");// Outputs: NaN
 // console.log("Hell" + "1");// Outputs: "Hell1"
+
+// Question4
+
+//Why .sort() does not work as expected?
+// const arr = [1, 2, 11, 21];
+// arr.sort();
+// console.log(arr); // Outputs: [1, 11, 2, 21]
+
+// The .sort() method sorts elements as strings by default. 
+// When sorting numbers, it compares their string representations, which is why "11" comes before "2". 
+// To sort numbers correctly, you can provide a compare function to .sort(), like this:
+
+// arr.sort((a, b) => a - b);
+// console.log(arr); // Outputs: [1, 2, 11, 21]

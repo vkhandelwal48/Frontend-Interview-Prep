@@ -126,3 +126,42 @@ flexbox properties
 8) flex-shrink - Defines the ability of a flex item to shrink if necessary.
 9) flex-basis - Defines the default size of a flex item before the remaining space is distributed.
 10) order - Defines the order of flex items within the flex container.
+
+Critical CSS
+Critical CSS is a technique used in web development to optimize the loading performance
+of a webpage. It involves identifying and extracting the CSS that is essential for
+rendering the above-the-fold content of a webpage, which is the portion of the page
+that is visible to users without scrolling. By inlining this critical CSS directly
+into the HTML document, it allows the browser to render the page faster, improving
+the user experience. The remaining non-critical CSS can be loaded asynchronously,
+ensuring that it does not block the rendering of the initial content.
+This technique helps to reduce render-blocking resources and can significantly
+enhance page load times.
+
+rgba vs hsl
+
+rgba -> RGBA stands for Red, Green, Blue, Alpha. Colors are defined by the intensity of each primary
+        light source, with values typically ranging from 0 to 255 (or 0% to 100%).
+hsl -> HSL stands for Hue, Saturation, Lightness. This model is based on the color wheel and
+       is designed to be more intuitive for humans.
+
+1-> Model
+rgba-> Additive color model (based on light)
+hsl-> Cylindrical representation of the RGB space
+
+2-> Parameters
+rgba-> Red, Green, Blue (0-255 or 0-100%) and Alpha (0.0-1.0)
+hsl-> Hue (0-360° angle), Saturation (0-100% percentage), Lightness (0-100% percentage),
+      and optional Alpha (0.0-1.0).
+
+3-> Color Picking
+rgba-> Values (e.g., rgb(87, 133, 87)) are not human-readable;
+       difficult to guess the color or create schemes without a tool
+hsl->Values (e.g., hsl(120, 21%, 43%)) are more human-readable and
+     easier to manipulate intuitively
+
+4-> Color Adjustment
+rgba-> Changing lightness or creating variations requires adjusting all three R, G, and B
+       values in potentially complex ways
+hsl-> Changing lightness or saturation is simple; you just modify the corresponding single
+      percentage value

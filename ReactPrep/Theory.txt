@@ -162,7 +162,7 @@ If the props and state have not changed, the Pure Component will not re-render, 
 Instead of re-rendering every time parent renders, a PureComponent re-renders only if its props or state change (shallow comparison).
 It adds a built in shouldComponentUpdate() method that performs this shallow comparison automatically.
 
-when to now use Pure Component
+when to not use Pure Component
 1) When props or state are complex objects or arrays that may change frequently.
 2) When the component relies on external data or context that may change independently of props or state.
 3) When the component has side effects or relies on lifecycle methods that need to be executed on every render.

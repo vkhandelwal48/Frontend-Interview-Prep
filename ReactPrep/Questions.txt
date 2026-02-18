@@ -395,3 +395,40 @@ Answer:
 
 This approach can reduce initial bundle size by 60-70% while maintaining excellent user experience 
 through strategic loading of features based on user interaction patterns.
+
+Question 13
+Suppose in a React Application there is a page which has header, footer and navbar.
+So whenever we move to next page.Why does it re-render? If so, how can we avoid it?
+
+In a React application, when you navigate to a new page, the entire component tree may re-render
+because React's default behavior is to re-render components whenever their state or props change.
+This can lead to unnecessary re-renders of components like the header, footer, and navbar,
+which may not need to update when navigating between pages.
+
+To avoid unnecessary re-renders of components like the header, footer, and navbar,
+you can use React's memoization techniques. One common approach is to use the React.memo
+higher-order component to wrap these components. This will prevent them from re-rendering
+unless their props change.
+
+Question 14
+How to debug “Maximum call stack size exceeded” error?
+
+It happens when:
+a-> A function keeps calling itself
+b-> A component keeps re-rendering infinitely
+c-> useEffect keeps triggering itself
+d-> State update causes endless re-render
+
+Most Common Causes in React
+1-> Infinite useEffect Loop (Most Common)
+2-> Wrong Dependency in useEffect
+3-> Updating State During Render
+4-> Recursive Function Without Exit Condition
+5-> Component Rendering Itself
+
+How to Debug It
+1-> Check Console Stack Trace
+2-> Add Logs Strategically
+3-> Check useEffect Dependencies
+4-> Check Memoization
+5-> Use React DevTools
