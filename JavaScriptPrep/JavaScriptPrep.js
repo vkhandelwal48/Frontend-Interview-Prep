@@ -273,6 +273,32 @@
 
 // console.log(Volume(2)(3)(4));
 
+// Pipe and Compose
+// Pipe and compose are functional programming techniques used to combine multiple functions into a single
+// function that processes data in a specific order.
+
+// const add2 = (x) => x + 2;
+// const multiply3 = (x) => x * 3;
+
+// multiply3(add2(4)); // (4 + 2) * 3 = 18
+
+// Compose
+// Direction -> Executes function from right to left.
+// Uses Functional Programming
+// internal method is reduceRight.
+// compose(f3, f2, f1)(value) is equivalent to f3(f2(f1(value)))
+
+// example
+// const result = compose(multiply3, add2)(4); // 18
+
+// Pipe
+// Direction -> Executes functions from left to right.
+// Uses Readable Pipelines
+// internal method is reduce.
+// pipe(f1, f2, f3)(value) is equivalent to f3(f2(f1(value)))
+
+// const result = pipe(multiply3, add2); // 18
+
 // Feature Detection vs Feature Inference vs User Agent(UA) String
 
 // Feature Detection
@@ -365,6 +391,11 @@
 // 6) Document Root:
 
 // The event eventually reaches the document root.
+
+// Event delegation
+// Event delegation is a JavaScript pattern where you attach one event listener to a parent element 
+// instead of adding listeners to many child elements, and then use event bubbling to handle events
+// from those children.
 
 //What is the difference between an "attribute" and a "property"?
 
@@ -904,3 +935,435 @@
 
 // const boundGreet = greet.bind(person);
 // boundGreet(); // 'this' refers to 'person'
+
+// Proxy and Reflect
+
+// Proxy
+// A Proxy is a built-in JavaScript object that allows you to create a wrapper around another object,
+// intercepting and customizing operations performed on that object, such as property access, assignment, enumeration, function invocation, etc.
+
+// Reflect
+// Reflect is a built-in JavaScript object that provides methods for interceptable JavaScript operations. 
+// It is often used in conjunction with Proxy to perform default behavior for intercepted operations.
+
+// const person = {
+//   fname: 'Vidit',
+//   lname: 'Khandelwal',
+//   age: 25
+// }
+
+// const proxyPerson = new Proxy(person, {
+//   get(target, property) {
+//     console.log(`Getting property: ${property}`);
+//     return Reflect.get(target, property);
+//   },
+//   set(target, property, value) {
+//     if (property === 'fname' && typeof value !== 'string') {
+//       throw new TypeError('First name must be a string');
+//     }
+//     if (property === 'lname' && typeof value !== 'string') {
+//       throw new TypeError('Last name must be a string');
+//     }
+//     if (property === 'age' && (typeof value !== 'number' || value < 0)) {
+//       throw new TypeError('Age must be a positive number');
+//     }
+//     console.log(`Setting property: ${property} to ${value}`);
+//     return Reflect.set(target, property, value);
+//   }
+// });
+
+// console.log(proxyPerson.fname); // Logs: Getting property: fname
+// proxyPerson.age = 26; // Logs: Setting property: age to 26
+
+// Event Emitter
+// An Event Emitter is a design pattern that allows objects to emit events and other objects to listen for those events and respond accordingly.
+// It is commonly used in JavaScript for handling asynchronous events and creating a publish-subscribe mechanism.
+
+// class EventEmitter {
+//   constructor() {
+//     // [event]: listener[]
+//     this.__event_listeners = {};
+//   }
+
+//   on(event, listener) {
+//     // Register the [listener] for [event]
+//     if (!this.__event_listeners[event]){
+//       this.__event_listeners[event] = [];
+//     }
+
+//     this.__event_listeners[event].push(listener);
+//     return true;
+//   }
+
+//   emit(event, ...args) {
+//     if (!this.__event_listeners[event]) {
+//       return false;
+//     }
+
+//     const listeners = this.__event_listeners[event];
+
+//     listeners.forEach(listener => {
+//       listener(...args);
+//     });
+//     return true;
+//   }
+
+//   off(event, listener) {
+//     if (!this.__event_listeners[event]) {
+//       return false;
+//     }
+
+//     const listeners = this.__event_listeners[event];
+//     const index = listeners.indexOf(listener);
+
+//     if (index === -1) {
+//       return false;
+//     }
+
+//     listeners.splice(index, 1);
+//     return true;
+//   }
+
+//   once(event, listener) {
+//     // Wrap the listener so it removes itself after the first call
+//     const wrapper = (...args) => {
+//       listener(...args);
+//       this.off(event, wrapper);
+//     };
+//     this.on(event, wrapper);
+//     return true;
+//   }
+// }
+
+// const e = new EventEmitter();
+// const greetListener = name => console.log(`Hello, ${name}!`);
+// e.on('greet', greetListener);
+// e.emit('greet', 'Vidit');    // Logs: Hello, Vidit!
+// e.off('greet', greetListener);
+// e.emit('greet', 'Vidit');    // No output
+
+// // once — fires only on first emit
+// e.once('ping', () => console.log('pong'));
+// e.emit('ping'); // Logs: pong
+// e.emit('ping'); // No output
+
+// Nullish Coalescing (??) and Optional Chaining (?.)
+
+// ?? — Nullish Coalescing
+// Returns the RIGHT side only when the LEFT side is null or undefined.
+// Unlike ||, it does NOT treat 0, false, or "" as fallback triggers.
+
+// const a = null ?? "default";      // "default"
+// const b = undefined ?? "default"; // "default"
+// const c = 0 ?? "default";         // 0      ← key difference from ||
+// const d = "" ?? "default";        // ""     ← key difference from ||
+// const e = false ?? "default";     // false  ← key difference from ||
+
+// || vs ??
+// const port = userInput || 3000;   // 0 triggers fallback (wrong if 0 is valid)
+// const port = userInput ?? 3000;   // 0 is kept as-is (correct)
+
+// ?. — Optional Chaining
+// Safely accesses deeply nested properties without throwing if any part is null/undefined.
+// Returns undefined instead of throwing a TypeError.
+
+// Without optional chaining:
+// const city = user && user.address && user.address.city; // verbose
+
+// With optional chaining:
+// const city = user?.address?.city; // undefined if any part is null/undefined
+
+// Works with methods:
+// const len = str?.trim()?.length;  // won't throw if str is null
+
+// Works with arrays:
+// const first = arr?.[0];
+
+// Works with function calls:
+// callback?.();  // only calls if callback is not null/undefined
+
+// Combining ?? and ?.
+// const city = user?.address?.city ?? "Unknown";
+// If city is undefined (missing nested property), falls back to "Unknown"
+
+// Output-based examples:
+// const user = { profile: { name: "Vidit" } };
+// console.log(user?.profile?.name);        // "Vidit"
+// console.log(user?.address?.city);        // undefined  (no error)
+// console.log(user?.address?.city ?? "N/A"); // "N/A"
+
+// const user2 = null;
+// console.log(user2?.profile?.name);       // undefined  (no error)
+
+// typeof vs instanceof
+
+// typeof
+// Returns a string indicating the primitive type of a value.
+// Works on primitives AND is the only safe check for undeclared variables.
+
+// console.log(typeof 42);            // "number"
+// console.log(typeof "hello");       // "string"
+// console.log(typeof true);          // "boolean"
+// console.log(typeof undefined);     // "undefined"
+// console.log(typeof Symbol());      // "symbol"
+// console.log(typeof function(){}); // "function"
+// console.log(typeof {});            // "object"
+// console.log(typeof []);            // "object"  ← not "array"!
+// console.log(typeof null);          // "object"  ← famous JS bug, null is NOT an object
+
+// Limitations of typeof:
+// - Cannot distinguish between Array, Object, null — all return "object"
+// - To check for array: Array.isArray(value)
+// - To check for null: value === null
+
+// instanceof
+// Checks whether an object was created from a specific constructor
+// by walking up the prototype chain.
+// Only works with objects — primitives always return false.
+
+// console.log([] instanceof Array);         // true
+// console.log([] instanceof Object);        // true  ← Array extends Object
+// console.log({} instanceof Object);        // true
+// console.log(function(){} instanceof Function); // true
+
+// console.log(42 instanceof Number);        // false ← primitives don't work
+// console.log("hi" instanceof String);      // false ← primitives don't work
+
+// Prototype chain example:
+// class Animal {}
+// class Dog extends Animal {}
+// const d = new Dog();
+// console.log(d instanceof Dog);    // true
+// console.log(d instanceof Animal); // true  ← walks up the chain
+
+// When to use which:
+// typeof  → checking primitive types (string, number, boolean, undefined, function)
+// instanceof → checking if an object is an instance of a class/constructor
+
+// Quick comparison table:
+// Value            typeof          instanceof Array    instanceof Object
+// 42               "number"        false               false
+// "hi"             "string"        false               false
+// []               "object"        true                true
+// {}               "object"        false               true
+// null             "object"        false               false (throws in some engines)
+// function(){}     "function"      false               true
+
+// Temporal Dead Zone
+// The Temporal Dead Zone (TDZ) is a behavior in JavaScript that occurs when using the let and const
+// keywords for variable declarations. The TDZ refers to the period of time between the start of a
+// block and the point where a variable is declared and initialized.
+
+// console.log(myVar); // ReferenceError: Cannot access 'myVar' before initialization
+// let myVar = 5;
+
+// console.log(myConst); // ReferenceError: Cannot access 'myConst' before initialization
+// const myConst = 10;
+
+// The key point: let/const ARE hoisted (the binding is created) but they are NOT initialized.
+// Accessing them before the declaration line = ReferenceError.
+// var is initialized to undefined during hoisting, so no error — just undefined.
+
+// Object.freeze vs Object.seal
+
+// Object.freeze
+// - No new properties can be added
+// - Existing properties cannot be removed or modified (values are locked)
+// - The object is effectively read-only
+
+// const obj = Object.freeze({ name: 'Vidit', age: 25 });
+// obj.name = 'Varun';   // silently fails (or throws in strict mode)
+// obj.city = 'Delhi';   // silently fails
+// delete obj.age;       // silently fails
+// console.log(obj);     // { name: 'Vidit', age: 25 } — unchanged
+
+// Object.seal
+// - No new properties can be added
+// - Existing properties CANNOT be removed
+// - But existing property VALUES can still be changed
+
+// const obj2 = Object.seal({ name: 'Vidit', age: 25 });
+// obj2.name = 'Varun';  // ✅ allowed — value change
+// obj2.city = 'Delhi';  // ❌ silently fails — no new properties
+// delete obj2.age;      // ❌ silently fails
+// console.log(obj2);    // { name: 'Varun', age: 25 }
+
+// Quick comparison:
+// Operation              freeze    seal
+// Add new property       ❌        ❌
+// Delete property        ❌        ❌
+// Change value           ❌        ✅
+// Change descriptor      ❌        ❌
+
+// Note: Both are SHALLOW — nested objects are not frozen/sealed.
+// const o = Object.freeze({ inner: { x: 1 } });
+// o.inner.x = 99; // ✅ works! inner object is not frozen
+
+// WeakMap and WeakSet
+
+// WeakMap
+// - Keys must be objects (not primitives)
+// - Keys are held WEAKLY — if the key object has no other references, it gets garbage collected
+// - Not iterable (no .keys(), .values(), .forEach(), no .size)
+// - Methods: set(key, value), get(key), has(key), delete(key)
+
+// Use case: storing private/metadata associated with an object without preventing GC
+// const privateData = new WeakMap();
+// class Person {
+//   constructor(name) {
+//     privateData.set(this, { name });
+//   }
+//   getName() {
+//     return privateData.get(this).name;
+//   }
+// }
+
+// Use case: caching without memory leak
+// const cache = new WeakMap();
+// function process(obj) {
+//   if (cache.has(obj)) return cache.get(obj);
+//   const result = heavyComputation(obj);
+//   cache.set(obj, result);
+//   return result;
+// }
+// When obj goes out of scope, cache entry is automatically cleaned up
+
+// WeakSet
+// - Values must be objects
+// - Values are held weakly
+// - Not iterable, no .size
+// - Methods: add(value), has(value), delete(value)
+
+// Use case: tracking which objects have been processed (without preventing GC)
+// const visited = new WeakSet();
+// function visit(node) {
+//   if (visited.has(node)) return;
+//   visited.add(node);
+//   // process node...
+// }
+
+// Map vs WeakMap summary:
+// Feature         Map          WeakMap
+// Key types       any          objects only
+// Iterable        ✅           ❌
+// .size           ✅           ❌
+// GC of keys      no           yes (weakly held)
+
+// Generators and Iterators
+
+// Iterator Protocol
+// An object is an iterator if it has a next() method that returns { value, done }
+
+// const range = {
+//   from: 1, to: 3,
+//   [Symbol.iterator]() {
+//     let current = this.from;
+//     const last = this.to;
+//     return {
+//       next() {
+//         return current <= last
+//           ? { value: current++, done: false }
+//           : { value: undefined, done: true };
+//       }
+//     };
+//   }
+// };
+// for (let n of range) console.log(n); // 1, 2, 3
+
+// Generator Function (function*)
+// A function that can pause execution with yield and resume later.
+// Returns a Generator object which follows the iterator protocol.
+
+// function* counter(start = 0) {
+//   while (true) {
+//     yield start++;
+//   }
+// }
+// const gen = counter(1);
+// console.log(gen.next()); // { value: 1, done: false }
+// console.log(gen.next()); // { value: 2, done: false }
+// console.log(gen.next()); // { value: 3, done: false }
+
+// Finite generator
+// function* range(start, end) {
+//   for (let i = start; i <= end; i++) yield i;
+// }
+// console.log([...range(1, 5)]); // [1, 2, 3, 4, 5]
+
+// Use cases:
+// 1) Lazy evaluation — generate values on demand (infinite sequences)
+// 2) Custom iterables
+// 3) Async flow control (was used before async/await with co libraries)
+
+// CommonJS vs ES Modules
+
+// CommonJS (Node.js — .js or .cjs files)
+// - Synchronous loading (blocking)
+// - Dynamic: require() can be called anywhere, conditionally
+// - exports are a copy (not live bindings)
+
+// const fs = require('fs');                    // built-in
+// const { helper } = require('./utils');       // named
+// module.exports = { myFunc };                 // export
+// module.exports = myFunc;                     // default export
+
+// ES Modules (browser + modern Node.js — .mjs or "type":"module" in package.json)
+// - Asynchronous loading (non-blocking, allows tree shaking)
+// - Static: import/export must be at top level (enables static analysis)
+// - exports are LIVE bindings (consumer sees updated value)
+
+// import fs from 'fs';                         // default import
+// import { helper } from './utils.js';         // named import
+// import * as utils from './utils.js';         // namespace import
+// export const myFunc = () => {};              // named export
+// export default myFunc;                       // default export
+// const mod = await import('./utils.js');      // dynamic import (lazy loading)
+
+// Key differences:
+// Feature                CommonJS           ES Modules
+// Loading                Synchronous        Asynchronous
+// Where to call          Anywhere           Top-level only (static)
+// Tree shaking           ❌                 ✅
+// this at top level      module object      undefined
+// File extension         .js / .cjs         .mjs or "type":"module"
+// Browser support        ❌ (needs bundler) ✅ (native)
+
+// Memory Leaks in JavaScript
+
+// What is a memory leak?
+// Memory that is allocated but never released, growing over time → eventually crashes/slows the app.
+
+// Common causes:
+
+// 1) Global variables
+// function leak() { leakedVar = 'I am global'; } // no var/let/const → attaches to window
+// Fix: always declare with let/const/var; use strict mode
+
+// 2) Forgotten timers / intervals
+// const id = setInterval(() => { doWork(); }, 1000);
+// // If never cleared, callback and its closure stay in memory
+// Fix: clearInterval(id) when done (e.g., in React useEffect cleanup)
+
+// 3) Detached DOM nodes
+// let el = document.getElementById('btn');
+// el.addEventListener('click', handler);
+// document.body.removeChild(el); // removed from DOM but JS still holds reference
+// Fix: el = null after removal; remove event listeners before detaching
+
+// 4) Closures holding large objects
+// function outer() {
+//   const bigData = new Array(1000000).fill('x');
+//   return function inner() { console.log('done'); }; // bigData never released
+// }
+// Fix: don't capture variables you don't need in closures
+
+// 5) Unbounded caches / collections
+// const cache = {};
+// function store(key, val) { cache[key] = val; } // grows forever
+// Fix: use WeakMap, LRU cache with max size, or TTL-based eviction
+
+// How to detect:
+// 1) Chrome DevTools → Memory tab → take heap snapshots, compare over time
+// 2) Look for growing "Retained Size" in heap snapshot
+// 3) Performance tab → record and watch JS heap size climbing
+// 4) Tools: Sentry, Clinic.js (Node.js)
