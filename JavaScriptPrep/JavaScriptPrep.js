@@ -1,4 +1,5 @@
-// Javascript is a single threaded, non-blocking, asynchronous concurrent language.  // it is synchronous because it executes code line by line.
+// JavaScript is single-threaded and synchronous by nature — it executes code line by line.
+// However, it supports asynchronous operations through the event loop, callbacks, promises, and async/await.
 
 // What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
 
@@ -299,18 +300,16 @@
 
 // const result = pipe(multiply3, add2); // 18
 
-// Feature Detection vs Feature Inference vs User Agent(UA) String
-
 // Feature Detection
 // Feature Detection involves checking whether a specific browser feature is supported by testing for the
-// existence of that feature or property in the browser's environment.
+// existence of that feature or property in the browser's environment. This is the recommended approach.
 
-// Feature Inference
-// Feature Inference involves making an educated guess about the browser's capabilties based on the presence of other features.
-
-// User Agent String
-// The User Agent (UA) string is a string sent by a browser to identify itself to the server. 
-// Developers sometimes parse this string to infer information about the browser.
+// Example
+// if (typeof window.fetch !== 'undefined') {
+//   // Safe to use fetch API
+// } else {
+//   // Fallback to XMLHttpRequest
+// }
 
 // Explain Hoisting
 // Hoisting is a behavior of Javascript when a variable and function declarations are moved to the top
