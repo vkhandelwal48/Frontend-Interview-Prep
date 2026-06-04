@@ -1,0 +1,17 @@
+.virtualized-container {
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+.virtualized-wrapper {
+  position: relative;
+}
+
+.virtualized-items-container {
+  width: 100%;
+}
+
+.virtualized-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}

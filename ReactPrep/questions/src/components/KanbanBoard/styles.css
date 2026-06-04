@@ -1,0 +1,95 @@
+.kanban-board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.kanban-column {
+  flex: 1;
+  background-color: #e2e4e6;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 300px;
+}
+
+.column-title {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.tasks-container {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 8px;
+  min-height: 200px;
+  margin-bottom: 12px;
+}
+
+.task-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background-color: #f9f9f9;
+}
+
+.task-card:active {
+  cursor: grabbing;
+  opacity: 0.8;
+}
+
+.task-content {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  word-break: break-word;
+}
+
+.delete-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #ff5252;
+}
+
+.add-task-btn {
+  width: 100%;
+  background-color: #0079bf;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #0066a1;
+}
