@@ -40,7 +40,7 @@
 //     }
     
 //     if (Array.isArray(value)) {
-//         return value.map((item) => deepClone(value));
+//         return value.map((item) => deepClone(item));
 //     }
     
 //     return Object.fromEntries(
@@ -122,3 +122,240 @@
 //     return fn.apply(context,[...bindArgs, ...callArgs]);
 //   };
 // };
+
+// Debounce
+
+// function debounce(fn, delay) {
+//     let timeoutId = null;
+
+//     return function (...args) {
+//         clearTimeout(timeoutId);
+
+//         timeoutId = setTimeout(() => {
+//             timeoutId = null;
+//             fn.apply(this, args);
+//         }, delay);
+//     }
+// }
+
+// Throttle
+
+// function throttle(fn, delay) {
+//     let shouldThrottle = false;
+
+//     return function (...args) {
+//         if (!shouldThrottle) {
+//             shouldThrottle = true;
+//             setTimeout(() => shouldThrottle = false, delay);
+//             fn.apply(this, args);
+//         }
+//     }
+// }
+
+// Promise.all
+
+// function promiseAll(iterable) {
+//     return new Promise((resolve, reject) => {
+//         const arr = Array.from(iterable);
+//         const results = new Array(arr.length);
+//         let unresolved = arr.length;
+
+//         if (unresolved === 0) {
+//             resolve(results);
+//             return;
+//         }
+
+//         arr.forEach((item, index) => {
+//             Promise.resolve(item).then(
+//                 (value) => {
+//                     results[index] = value;
+//                     unresolved-=1;
+
+//                     if (unresolved === 0) {
+//                         resolve(results);
+//                     }
+//                 },
+//                 (error) => {
+//                     reject(error);
+//                 }
+//             )
+//         })
+//     })
+// }
+
+// Promise.any
+
+// function promiseAny(iterable) {
+//     return new Promise((resolve, reject) => {
+//         const arr = Array.from(iterable);
+//         const errors = new Array(arr.length);
+//         let rejectedCount = 0;
+
+//         if (arr.length === 0) {
+//             reject(new AggregateError([], 'All promises were rejected'));
+//             return;
+//         }
+
+//         arr.forEach((item, index) => {
+//             Promise.resolve(item).then(
+//                 (value) => {
+//                     resolve(value);
+//                 },
+//                 (error) => {
+//                     errors[index] = error;
+//                     rejectedCount += 1;
+
+//                     if (rejectedCount === arr.length) {
+//                         reject(new AggregateError(errors, 'All promises were rejected'));
+//                     }
+//                 }
+//             )
+//         })
+//     })
+// }
+
+// Promise.race
+
+// function promiseRace(iterable) {
+//     return new Promise((resolve, reject) => {
+//         const arr = Array.from(iterable);
+
+//         // Empty iterable → promise stays pending forever (matches native behaviour)
+//         arr.forEach((item) => {
+//             Promise.resolve(item).then(resolve, reject);
+//         });
+//     });
+// }
+
+// Promise.allSettled
+
+// function allSettled(iterable) {
+//     return new Promise((resolve) => {
+//         const arr = Array.from(iterable);
+//         const results = new Array(arr.length);
+//         let settledCount = 0;
+
+//         if (arr.length === 0) {
+//             resolve(results);
+//             return;
+//         }
+
+//         arr.forEach((item, index) => {
+//             Promise.resolve(item).then(
+//                 (value) => {
+//                     results[index] = { status: 'fulfilled', value };
+//                     settledCount += 1;
+
+//                     if (settledCount === arr.length) {
+//                         resolve(results);
+//                     }
+//                 },
+//                 (reason) => {
+//                     results[index] = { status: 'rejected', reason };
+//                     settledCount += 1;
+
+//                     if (settledCount === arr.length) {
+//                         resolve(results);
+//                     }
+//                 }
+//             );
+//         });
+//     });
+// }
+
+// forEach
+
+// function myForEach(arr, callback, thisArg) {
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i in arr) {
+//             callback.call(thisArg, arr[i], i, arr);
+//         }
+//     }
+// }
+
+// findIndex
+
+// function myFindIndex(arr, callback, thisArg) {
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i in arr && callback.call(thisArg, arr[i], i, arr)) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
+
+// every
+
+// function myEvery(arr, callback, thisArg) {
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i in arr && !callback.call(thisArg, arr[i], i, arr)) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+// some
+
+// function mySome(arr, callback, thisArg) {
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i in arr && callback.call(thisArg, arr[i], i, arr)) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+// myApply
+
+// function myApply(func, thisArg, argArray) {
+//     return func.apply(thisArg, argArray);
+// }
+
+// curry
+
+// function curry(func) {
+//     return function curried(...args) {
+//         if (args.length >= func.length) {
+//             return func.apply(this, args);
+//         }
+//         return function (...args2) {
+//             return curried.apply(this, [...args, ...args2]);
+//         };
+//     };
+// }
+
+// memoize
+
+// function memoize(func) {
+//     const cache = new Map();
+//     return function (...args) {
+//         const key = JSON.stringify(args);
+//         if (cache.has(key)) {
+//             return cache.get(key);
+//         }
+//         const result = func.apply(this, args);
+//         cache.set(key, result);
+//         return result;
+//     };
+// }
+
+// Compose
+
+// function compose(...functions) {
+//   return function (value) {
+//     return functions.reduceRight((acc, fn) => {
+//       return fn(acc);
+//     }, value);
+//   };
+// }
+
+// Pipe
+
+// function pipe(...functions) {
+//   return function (value) {
+//     return functions.reduce((acc, fn) => {
+//       return fn(acc);
+//     }, value);
+//   };
+// }
