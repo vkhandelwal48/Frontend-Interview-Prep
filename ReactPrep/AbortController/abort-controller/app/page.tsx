@@ -33,7 +33,9 @@ export default function Page() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
+    // const signal = AbortSignal.abort("abort");
+    // const signal = AbortSignal.timeout(5000);
+    const signal = AbortSignal.any([ controller.signal, AbortSignal.timeout(5000) ]);
 
     document.addEventListener("drag", () => {}, { signal });
     document.addEventListener("dragend", () => {}, { signal });
