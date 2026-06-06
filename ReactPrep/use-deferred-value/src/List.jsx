@@ -1,14 +1,19 @@
-import { useMemo } from 'react';
+import { useDeferredValue, useEffect, useMemo } from 'react';
 
 const List = ({ input }) => {
   const LIST_SIZE = 20000;
+  const deferredInput = useDeferredValue(input);
   const list = useMemo(() => {
     const l = [];
     for (let i = 0; i < LIST_SIZE; i++) {
-      l.push(<div key={i}>{input}</div>);
+      l.push(<div key={i}>{deferredInput}</div>);
     }
     return l;
-  }, [input]);
+  }, [deferredInput]);
+
+  useEffect(() => {
+    console.log('Input:', input, 'Deferred input updated:', deferredInput);
+  }, [input, deferredInput]);
 
   return list;
 };
