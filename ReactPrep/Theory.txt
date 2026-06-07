@@ -462,6 +462,40 @@ UseCallback
 It returns that function which you wrapped. It ensures that function is not recreated instead
 it stores it internally in memory and reuses that store function whenever component function executes again.
 
+UseLayoutEffect
+Fires synchronously after all DOM mutations but before the browser paints.
+Use it when you need to read layout (e.g., element size/position) and synchronously update the DOM before the user sees anything.
+
+Signature is identical to useEffect:
+useLayoutEffect(() => {
+  // runs after DOM update, before paint
+  return () => { /* cleanup */ };
+}, [dependencies]);
+
+useEffect vs useLayoutEffect
+
+useEffect
+1-> Runs asynchronously after the browser has painted.
+2-> Does not block the browser paint.
+3-> Use for: data fetching, subscriptions, logging, timers.
+4-> Safe for most side effects — user sees paint first, then effect runs.
+
+useLayoutEffect
+1-> Runs synchronously after DOM mutations, before the browser paints.
+2-> Blocks the browser paint until it finishes.
+3-> Use for: reading DOM measurements (getBoundingClientRect), preventing visual flicker,
+    synchronously updating DOM before paint.
+4-> Misuse can cause performance issues (janky UI) because it blocks paint.
+
+When to use useLayoutEffect (rule of thumb)
+-> If your effect reads or writes to the DOM and the result must be visible
+   before the user sees the frame, use useLayoutEffect.
+-> Otherwise, always prefer useEffect.
+
+Note: In SSR (Next.js etc.), useLayoutEffect causes a warning because
+layout effects cannot run on the server. Use useEffect or conditionally
+skip with typeof window !== 'undefined'.
+
 Tanstack Query
 It is a library that helps you with sending HTTP requests & keeping your frontend UI in sync.
 

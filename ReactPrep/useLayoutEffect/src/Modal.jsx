@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 
 export default function Modal() {
   const [show, setShow] = useState(false);
   const popup = useRef();
   const button = useRef();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (popup.current == null || button.current == null) return;
     const { bottom } = button.current.getBoundingClientRect();
     popup.current.style.top = `${bottom + 25}px`;
@@ -24,3 +24,6 @@ export default function Modal() {
     </>
   )
 }
+
+// If useEffect was used here, the Text would briefly flash
+// in the wrong position before jumping to the correct one.
