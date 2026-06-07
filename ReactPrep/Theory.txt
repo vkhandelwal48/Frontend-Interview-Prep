@@ -514,3 +514,18 @@ that the data we are currently displaying is outdated.
 
 3-> Another feature here is Caching
 So that the data once fetched is cached. Stored in memory and we can reuse that data if need it again.
+
+Using Tanstack Query
+
+a-> Tanstack query does not send HTTP Requests. At least not on its own.
+b-> You have to write the code that sends the actual HTTP request. 
+c-> Tanstack Query then manages the data, errors, caching & much more! for
+managing those requests and so on.
+
+TanStack Query Caches Query Data
+1-> useQuery called in component.
+2-> FetchData() is executed & HTTP request is sent.
+3-> Data is received.
+  a-> Cached (stored) by Tanstack Query
+4-> Called in Component B
+  a-> Cached data is reused & shown on the screen immediately.
