@@ -529,3 +529,25 @@ TanStack Query Caches Query Data
   a-> Cached (stored) by Tanstack Query
 4-> Called in Component B
   a-> Cached data is reused & shown on the screen immediately.
+
+It will reuse the data whenever it encounters another useQuery with the same
+queryKey.
+
+Example
+If we go back to this page and therefore this component function executes again.
+React Query wull see that this queryKey has been used before and it did already
+cache data for that key. And it will then instantly yield that data but at the
+same time, also send this request again behind the scenes to see if updated data
+is available and then it will kind of silently reaplce that data with the updated
+data so that after a couple of seconds or however long it takes to fetch that data
+we do have that updated data on screen. So that we get the best of both worlds.
+Instant results but still updated data.
+
+StaleTime
+It controls after which time React Query will send such a Behind the Scenes request
+to get updated data in your cache. And the default is zero, which means it will use
+data from cache but it will then always send such a Behind the Scenes request to get
+udpated data.
+
+gcTime
+This controls how long the data and the cache will be kept around.
