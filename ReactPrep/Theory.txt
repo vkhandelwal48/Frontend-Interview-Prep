@@ -551,3 +551,5 @@ udpated data.
 
 gcTime
 This controls how long the data and the cache will be kept around.
+
+React Query can abort requests and it does that with the help of signal
