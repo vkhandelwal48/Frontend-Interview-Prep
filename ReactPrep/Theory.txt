@@ -559,3 +559,14 @@ Difference is that isLoading will not be true if this query is just disabled. So
 if I switch from is pending to isLoading here and we start. We start with this info text for
 the user and we can enter text to briefly get that loading spinner and my result and I can
 clear that to go back to all search results.
+
+useMutation
+Those requests are not send instantly when this component renders as it by default is the case
+with useQuery but that requests are only sent when you want to send them.
+
+Mutation is not here to cache their response data because they are primarily about changing
+something on your backend. Not about getting and storing data in your frontend.
+
+isPending(useMutation) -> will be true if the request is currently on its way and false otherwise
+isError -> Same as useQuery
+error -> container Error detail 
