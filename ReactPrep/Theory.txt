@@ -461,3 +461,12 @@ cleanup function
 UseCallback
 It returns that function which you wrapped. It ensures that function is not recreated instead
 it stores it internally in memory and reuses that store function whenever component function executes again.
+
+Tanstack Query
+It is a library that helps you with sending HTTP requests & keeping your frontend UI in sync.
+
+You can use useEffect and fetch to do the same things but Tanstack query can vastly simplify
+your code (and your life as a developer).
+
+It comes with more built-in more advanced features. Which might be needed by more complex react
+apps which are relatively difficult and challenging to build on your own.
