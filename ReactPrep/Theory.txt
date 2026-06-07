@@ -504,3 +504,13 @@ your code (and your life as a developer).
 
 It comes with more built-in more advanced features. Which might be needed by more complex react
 apps which are relatively difficult and challenging to build on your own.
+
+Why Tanstack Query?
+1-> The number of lines of code reduces.
+
+2-> If i move to different tab and then come back again on the website. Then i might want to do trigger
+a refetch. So behind the scenes we are fetching new data and we are updating the UI if we found out
+that the data we are currently displaying is outdated.
+
+3-> Another feature here is Caching
+So that the data once fetched is cached. Stored in memory and we can reuse that data if need it again.
