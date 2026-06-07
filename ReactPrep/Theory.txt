@@ -553,3 +553,9 @@ gcTime
 This controls how long the data and the cache will be kept around.
 
 React Query can abort requests and it does that with the help of signal
+
+isLoading vs isPending
+Difference is that isLoading will not be true if this query is just disabled. So therefore,
+if I switch from is pending to isLoading here and we start. We start with this info text for
+the user and we can enter text to briefly get that loading spinner and my result and I can
+clear that to go back to all search results.
