@@ -18,7 +18,8 @@ export default function EventDetails() {
     mutationFn: deleteEvent,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['events']
+        queryKey: ['events'],
+        refetchType: 'none', // Don't refetch the events list, just mark it as stale so it will be refetched when the user navigates back to the list
       });
       navigate('/events');
     }
