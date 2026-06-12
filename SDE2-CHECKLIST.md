@@ -72,8 +72,8 @@
 | XMLHttpRequest | ⚠️ | Legacy; light coverage | ⚠️ |
 | CORS | ✅ | Preflight, credentials, headers comprehensive | 🎯 |
 | IntersectionObserver | ✅ | Lazy loading, infinite scroll, analytics | 🎯 |
-| MutationObserver | ❌ | DOM change detection | 🎯 |
-| ResizeObserver | ❌ | Element size tracking | - |
+| MutationObserver | ✅ | DOM change detection covered | 🎯 |
+| ResizeObserver | ✅ | Element size tracking covered | - |
 | PerformanceObserver | ❌ | Core Web Vitals, metrics | 🎯 |
 | requestAnimationFrame | ⚠️ | Not explicitly covered | 🎯 |
 | Service Worker | ❌ | Offline, caching, push notifications | 🎯 |
@@ -260,7 +260,7 @@
 | JavaScript | 13 | 2 | 1 | 16 |
 | HTML & a11y | 1 | 3 | 3 | 7 |
 | CSS & Layout | 8 | 4 | 2 | 14 |
-| Browser APIs | 3 | 6 | 8 | 17 |
+| Browser APIs | 5 | 6 | 6 | 17 |
 | Real-Time | 4 | 0 | 0 | 4 |
 | TypeScript | 0 | 0 | 10 | 10 |
 | Testing | 0 | 0 | 8 | 8 |
@@ -272,7 +272,7 @@
 | Production | 0 | 1 | 5 | 6 |
 | Machine-Coding | 6 | 0 | 1 | 7 |
 | Misc | 0 | 1 | 1 | 2 |
-| **TOTAL** | **75** | **30** | **32** | **137** |
+| **TOTAL** | **77** | **30** | **30** | **137** |
 
 ---
 
@@ -281,7 +281,7 @@
 **High Impact, Currently Missing (Start Here):**
 1. TypeScript (10 topics) — Critical for SDE-2 coding rounds
 2. Testing (8 topics) — Expected to write & discuss tests
-3. Browser APIs: Service Worker, Web Worker, MutationObserver (8 topics) — Common interview questions
+3. Browser APIs: Service Worker, Web Worker, PerformanceObserver (6 topics) — Common interview questions
 4. Security: XSS, CSRF, CSP, token storage (6 topics) — Production concerns
 5. Performance: Core Web Vitals, memory profiling, bundle analysis (6 topics) — System design component
 
@@ -302,7 +302,7 @@
 
 1. **Week 1–2:** TypeScript fundamentals + React integration
 2. **Week 3:** Testing (Jest, React Testing Library, E2E)
-3. **Week 4:** Browser APIs deep dive (Service Worker, Web Worker, MutationObserver)
+3. **Week 4:** Browser APIs deep dive (Service Worker, Web Worker, PerformanceObserver)
 4. **Week 5:** Security patterns + performance profiling
 5. **Week 6+:** Machine-coding timed builds + mock interviews
 

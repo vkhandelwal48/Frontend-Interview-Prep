@@ -1,5 +1,5 @@
 const mutationObserver = new MutationObserver(entries => {
-    console.log(entries);
+  console.log(entries);
 })
 
 const parent = document.querySelector('.parent');
@@ -33,14 +33,14 @@ const parent = document.querySelector('.parent');
 // oldValue: tells you the old value of the attribute before it was changed
 
 mutationObserver.observe(parent, {
-    subtree: true, // anytime we make changes to the children of this element or any of its descendants we want to log that change
-    characterData: true, // anytime we make changes to the text content of this element we want to log that change
-    characterDataOldValue: true // we also want to log the old value of the text content before it was changed
+  subtree: true, // anytime we make changes to the children of this element or any of its descendants we want to log that change
+  characterData: true, // anytime we make changes to the text content of this element we want to log that change
+  characterDataOldValue: true // we also want to log the old value of the text content before it was changed
 });
 
 mutationObserver.observe(parent, {
-    subtree: true,
-    attributes: true,
+  subtree: true,
+  attributes: true,
 });
 
 parent.children[0].id = "Test";
