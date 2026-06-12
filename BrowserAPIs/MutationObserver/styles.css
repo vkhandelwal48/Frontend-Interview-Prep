@@ -1,0 +1,23 @@
+.parent {
+  width: 700px;
+  height: 250px;
+  background-color: lightblue;
+  border: 2px dashed gray;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.child {
+  width: 110px;
+  height: 140px;
+  background-color: lightcoral;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  border: 1px solid #999;
+}
