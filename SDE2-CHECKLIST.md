@@ -102,16 +102,16 @@
 
 | Topic | Status | Notes | Priority |
 |-------|--------|-------|----------|
-| Basic Types | ❌ | No TypeScript prep folder | 🎯 |
-| Generics | ❌ | Generic constraints, inference | 🎯 |
-| Union & Intersection Types | ❌ | Advanced type composition | 🎯 |
-| Type Guards & Narrowing | ❌ | Type predicates, typeof, instanceof | 🎯 |
-| Utility Types | ❌ | Partial, Pick, Record, etc. | 🎯 |
-| Conditional Types | ❌ | Mapped types, extends keyword | 🎯 |
-| Module System | ❌ | Import/export, declaration files | 🎯 |
-| Decorators | ❌ | Metadata, class decorators | - |
-| TSConfig Best Practices | ❌ | Compiler options, strict mode | 🎯 |
-| TypeScript with React | ❌ | Component typing, hooks | 🎯 |
+| Basic Types | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Generics | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Union & Intersection Types | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Type Guards & Narrowing | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Utility Types | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Conditional Types | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Module System | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| Decorators | ✅ | Interview-awareness coverage in TypeScriptPrep/Theory.txt | - |
+| TSConfig Best Practices | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
+| TypeScript with React | ✅ | Covered in TypeScriptPrep/Theory.txt | 🎯 |
 
 ---
 
@@ -262,7 +262,7 @@
 | CSS & Layout | 13 | 0 | 0 | 13 |
 | Browser APIs | 13 | 6 | 0 | 19 |
 | Real-Time | 5 | 0 | 0 | 5 |
-| TypeScript | 0 | 0 | 10 | 10 |
+| TypeScript | 10 | 0 | 0 | 10 |
 | Testing | 0 | 0 | 8 | 8 |
 | Performance | 10 | 1 | 0 | 11 |
 | Security | 10 | 0 | 0 | 10 |
@@ -272,18 +272,17 @@
 | Production | 0 | 1 | 5 | 6 |
 | Machine-Coding | 6 | 0 | 1 | 7 |
 | Misc | 0 | 2 | 3 | 5 |
-| **TOTAL** | **98** | **18** | **29** | **145** |
+| **TOTAL** | **108** | **18** | **19** | **145** |
 
 ---
 
 ## Priority Gaps (🎯 = SDE-2 Critical)
 
 **High Impact, Currently Missing (Start Here):**
-1. TypeScript (10 topics) — Critical for SDE-2 coding rounds
-2. Testing (8 topics) — Expected to write & discuss tests
-3. Production frontend patterns (5 topics) — Real-world reliability and rollout readiness
-4. JavaScript gaps: Regular Expressions + Symbols/BigInt — Frequent language-level interview checks
-5. Tooling/diagnostics gaps: DevTools, network waterfall, accessibility testing tools — Debugging rounds leverage these heavily
+1. Testing (8 topics) — Expected to write & discuss tests
+2. Production frontend patterns (5 topics) — Real-world reliability and rollout readiness
+3. JavaScript gaps: Regular Expressions + Symbols/BigInt — Frequent language-level interview checks
+4. Tooling/diagnostics gaps: DevTools, network waterfall, accessibility testing tools — Debugging rounds leverage these heavily
 
 **Medium Impact, Partial Coverage (Strengthen):**
 - Performance optimization workflows (profiling, measurement)
@@ -300,9 +299,8 @@
 
 ## Next Steps
 
-1. **Week 1–2:** TypeScript fundamentals + React integration
-2. **Week 3:** Testing (Jest, React Testing Library, E2E)
-3. **Week 4:** Production patterns (error handling, feature flags, release strategy)
-4. **Week 5:** Debugging workflows (DevTools, network analysis, accessibility test tooling)
-5. **Week 6+:** Machine-coding timed builds + mock interviews
+1. **Week 1:** Testing (Jest, React Testing Library, E2E)
+2. **Week 2:** Production patterns (error handling, feature flags, release strategy)
+3. **Week 3:** Debugging workflows (DevTools, network analysis, accessibility test tooling)
+4. **Week 4+:** Machine-coding timed builds + mock interviews
 

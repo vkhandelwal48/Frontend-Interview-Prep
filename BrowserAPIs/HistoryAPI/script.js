@@ -13,10 +13,11 @@ buttons.forEach((button) => {
     const route = button.dataset.route;
     const state = { route, timestamp: new Date().toISOString() };
 
+    const url = '#' + route;
     if (route === '/settings') {
-      history.replaceState(state, '', route);
+      history.replaceState(state, '', url);
     } else {
-      history.pushState(state, '', route);
+      history.pushState(state, '', url);
     }
 
     render(route, state);

@@ -1,5 +1,5 @@
 const CACHE_NAME = 'frontend-prep-cache-v1';
-const CACHE_KEY = '/sample-api-response';
+const CACHE_KEY = 'https://frontend-prep/sample-api-response';
 
 const status = document.getElementById('status');
 const output = document.getElementById('output');

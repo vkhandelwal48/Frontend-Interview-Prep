@@ -1,0 +1,235 @@
+TypeScript Interview Notes (SDE-2)
+
+Goal
+- Cover practical TypeScript concepts asked in frontend interviews.
+- Focus on correctness, safety, and React usage patterns.
+
+--------------------------------------------------
+1) Basic Types
+--------------------------------------------------
+- Primitive: string, number, boolean, null, undefined, symbol, bigint
+- Special: any, unknown, never, void
+- Arrays: number[] or Array<number>
+- Tuples: [string, number]
+- Enums: prefer union literals over enums for frontend code unless interop needs enum.
+
+Example
+let id: number = 101;
+let name: string = "Alice";
+let isActive: boolean = true;
+let meta: unknown = { role: "admin" };
+
+function fail(message: string): never {
+  throw new Error(message);
+}
+
+When to use unknown vs any
+- unknown: value exists but type is not known yet; must narrow before use.
+- any: disables type safety; use only as last resort.
+
+--------------------------------------------------
+2) Generics
+--------------------------------------------------
+Why
+- Reuse logic while preserving type information.
+
+Generic function
+function identity<T>(value: T): T {
+  return value;
+}
+
+Generic constraints
+interface HasId {
+  id: string;
+}
+
+function getId<T extends HasId>(item: T): string {
+  return item.id;
+}
+
+Generic utility in API wrapper
+type ApiResponse<T> = {
+  data: T;
+  error?: string;
+};
+
+--------------------------------------------------
+3) Union and Intersection Types
+--------------------------------------------------
+- Union (A | B): value can be one of many shapes.
+- Intersection (A & B): combine multiple type contracts.
+
+Example
+type LoadingState = { status: "loading" };
+type SuccessState = { status: "success"; data: string[] };
+type ErrorState = { status: "error"; message: string };
+
+type RequestState = LoadingState | SuccessState | ErrorState;
+
+type WithTimestamp = { updatedAt: string };
+type User = { id: string; email: string };
+type AuditedUser = User & WithTimestamp;
+
+--------------------------------------------------
+4) Type Guards and Narrowing
+--------------------------------------------------
+Built-in guards
+- typeof, instanceof, in operator
+
+Custom type predicate
+function isErrorState(state: RequestState): state is ErrorState {
+  return state.status === "error";
+}
+
+Exhaustive check with never
+function renderState(state: RequestState): string {
+  switch (state.status) {
+    case "loading":
+      return "Loading...";
+    case "success":
+      return state.data.join(", ");
+    case "error":
+      return state.message;
+    default: {
+      const _exhaustive: never = state;
+      return _exhaustive;
+    }
+  }
+}
+
+--------------------------------------------------
+5) Utility Types
+--------------------------------------------------
+- Partial<T>: all props optional
+- Required<T>: all props required
+- Pick<T, K>: select fields
+- Omit<T, K>: remove fields
+- Record<K, V>: key-value map
+- Readonly<T>: immutable view
+- ReturnType<F>: function return extraction
+
+Example
+interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+}
+
+type UserUpdatePayload = Partial<Pick<UserProfile, "name" | "email">>;
+type UserPublic = Omit<UserProfile, "isAdmin">;
+type UserMap = Record<string, UserProfile>;
+
+--------------------------------------------------
+6) Conditional and Mapped Types
+--------------------------------------------------
+Conditional type
+type ElementType<T> = T extends (infer U)[] ? U : T;
+
+Mapped type
+type Nullable<T> = {
+  [K in keyof T]: T[K] | null;
+};
+
+Common interview pattern
+- Build reusable transform types over API/domain models.
+
+--------------------------------------------------
+7) Module System
+--------------------------------------------------
+- Prefer ES Modules: export / import
+- Named export for utilities; default export sparingly.
+- Barrel files (index.ts) are useful but avoid circular imports.
+
+Example
+// user.ts
+export type User = { id: string; name: string };
+export function toLabel(user: User): string {
+  return `${user.name} (${user.id})`;
+}
+
+// app.ts
+import { toLabel, type User } from "./user";
+
+--------------------------------------------------
+8) Decorators (Interview Awareness)
+--------------------------------------------------
+- Decorators are mostly framework-driven (Angular/NestJS).
+- In frontend React interviews, deep decorator coding is uncommon.
+- Know what they are: metadata + class/method/property wrapping.
+
+--------------------------------------------------
+9) TSConfig Best Practices
+--------------------------------------------------
+Core flags
+- "strict": true
+- "noImplicitAny": true
+- "strictNullChecks": true
+- "noUncheckedIndexedAccess": true
+- "exactOptionalPropertyTypes": true
+- "noEmit": true (if bundler handles output)
+
+Interop and modules
+- "module": "ESNext"
+- "moduleResolution": "Bundler" (Vite) or "NodeNext" (Node ESM)
+- "target": "ES2022" (or team baseline)
+
+Performance and hygiene
+- "skipLibCheck": true (often pragmatic for app repos)
+- Keep include/exclude tight to avoid slow builds.
+
+--------------------------------------------------
+10) TypeScript with React
+--------------------------------------------------
+Props typing
+interface ButtonProps {
+  label: string;
+  disabled?: boolean;
+  onClick: () => void;
+}
+
+function Button({ label, disabled = false, onClick }: ButtonProps) {
+  return <button disabled={disabled} onClick={onClick}>{label}</button>;
+}
+
+useState typing
+const [count, setCount] = useState<number>(0);
+const [user, setUser] = useState<User | null>(null);
+
+Event typing
+function onInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  console.log(event.target.value);
+}
+
+Ref typing
+const inputRef = useRef<HTMLInputElement | null>(null);
+
+Generic component idea
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+}
+
+--------------------------------------------------
+11) SDE-2 Interview Talking Points
+--------------------------------------------------
+- Explain tradeoff: type safety vs developer velocity.
+- Explain API contracts with discriminated unions.
+- Show how strict TS prevents runtime bugs (null, undefined, shape mismatch).
+- Mention migration strategy for JS codebase:
+  1) enable allowJs/checkJs
+  2) convert leaf modules first
+  3) enforce strict mode incrementally
+
+--------------------------------------------------
+12) Rapid Revision Checklist (1 day)
+--------------------------------------------------
+- unknown vs any, never, void
+- Generics + extends constraints
+- Union narrowing + exhaustive switch
+- Utility types (Partial/Pick/Omit/Record)
+- Conditional + mapped basics
+- TSConfig strict flags
+- React handlers, props, state, refs typing
+
+End of notes.
