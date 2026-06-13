@@ -1,0 +1,30 @@
+CSS-in-JS
+CSS-in-JS is a styling approach where CSS is written inside JavaScript/TypeScript files, often at component scope.
+Common libraries: styled-components, Emotion, Stitches.
+
+When to use
+- Component-scoped styling in React apps.
+- Dynamic styles based on props/theme/state.
+- Co-locating UI and styles for maintainability.
+
+Benefits
+- Automatic style scoping.
+- Dynamic theming and prop-driven styles.
+- Dead code reduction in componentized apps.
+
+Trade-offs
+- Runtime overhead (in runtime-style libraries).
+- Larger JS bundles if overused.
+- Debuggability can be harder without good tooling.
+
+Interview points
+- Know runtime vs zero-runtime CSS-in-JS.
+- Explain SSR hydration and critical CSS extraction concerns.
+- Compare with CSS Modules and utility-first CSS (Tailwind).
+
+Example (styled-components style)
+const Button = styled.button`
+  background: ${props => (props.primary ? '#2563eb' : '#e5e7eb')};
+  color: ${props => (props.primary ? 'white' : '#111827')};
+  padding: 10px 14px;
+`;

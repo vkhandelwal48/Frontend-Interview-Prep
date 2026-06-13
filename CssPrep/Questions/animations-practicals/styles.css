@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #d1d5db;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.pulse-btn {
+  border: 0;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pulse-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.25);
+}
+
+.slide-in {
+  opacity: 0;
+  animation: slideIn 0.8s ease forwards;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

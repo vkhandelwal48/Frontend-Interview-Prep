@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+}
+
+.card {
+  width: 260px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+.card--highlighted {
+  border-color: #2563eb;
+}
+
+.card__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.card__price {
+  margin: 0 0 12px;
+  color: #6b7280;
+}
+
+.card__cta {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.card__cta--primary {
+  background: #2563eb;
+  color: #fff;
+}

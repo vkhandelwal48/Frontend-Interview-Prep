@@ -47,16 +47,16 @@
 | Box Model & Positioning | ✅ | All positioning modes covered | 🎯 |
 | Flexbox | ✅ | All properties, properties list | 🎯 |
 | Grid | ✅ | Basics covered; advanced missing | 🎯 |
-| Responsive Design | ⚠️ | Media queries mentioned; no strategy | 🎯 |
+| Responsive Design | ✅ | Mobile-first strategy practical added in CssPrep/Questions/responsive-strategy | 🎯 |
 | CSS Selectors & Specificity | ✅ | All selector types covered | 🎯 |
-| Cascade & Inheritance | ⚠️ | Basic theory; deep specificity missing | 🎯 |
+| Cascade & Inheritance | ✅ | Specificity + inheritance practical added in CssPrep/Questions/cascade-specificity | 🎯 |
 | Transforms & Transitions | ✅ | Basic demos present | 🎯 |
-| Animations | ⚠️ | Theory sparse; practical missing | ⚠️ |
+| Animations | ✅ | Keyframes + transitions practical added in CssPrep/Questions/animations-practicals | ⚠️ |
 | CSS Preprocessors (SASS/SCSS) | ✅ | SASS vs SCSS explained | ⚠️ |
-| Container Queries | ❌ | Modern responsive layout | - |
-| CSS-in-JS | ❌ | Styled-components, Emotion, etc. | - |
+| Container Queries | ✅ | Practical added in CssPrep/Questions/container-queries | - |
+| CSS-in-JS | ✅ | Dedicated notes and interview points added in CssPrep/CSS-in-JS/Theory.txt | - |
 | Reset vs Normalize | ✅ | Comparison provided | ⚠️ |
-| BEM & Naming Conventions | ❌ | CSS architecture patterns | 🎯 |
+| BEM & Naming Conventions | ✅ | BEM practical added in CssPrep/Questions/bem-naming | 🎯 |
 
 ---
 
@@ -289,7 +289,7 @@
 - Performance optimization workflows (profiling, measurement)
 - Accessibility (ARIA, keyboard navigation)
 - Error handling & observability patterns
-- Advanced CSS (animations, responsive strategy)
+- Advanced CSS interview depth (trade-offs, architecture decisions)
 
 **Lower Priority (Nice-to-Have):**
 - Symbols/BigInt, Proxy/Reflect (niche)

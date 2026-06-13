@@ -1,0 +1,49 @@
+:root {
+  --bg: #f7f4ef;
+  --card: #ffffff;
+  --text: #1b2430;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.hero {
+  padding: clamp(1rem, 5vw, 3rem);
+  background: linear-gradient(120deg, #f1dcc9, #f7f4ef);
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid #e6dfd5;
+  border-radius: 10px;
+  min-height: 90px;
+  display: grid;
+  place-items: center;
+}
+
+@media (min-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 16px;
+}
+
+p {
+  color: #1d4ed8;
+}
+
+.text {
+  color: #dc2626;
+}
+
+#priority {
+  color: #15803d;
+}
+
+.theme {
+  color: #374151;
+  border: 2px solid #d1d5db;
+  padding: 10px;
+}
+
+.theme p {
+  margin: 0;
+}
