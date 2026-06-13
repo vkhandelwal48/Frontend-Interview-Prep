@@ -1,0 +1,14 @@
+BroadcastChannel API
+- Used for same-origin communication between tabs, windows, iframes, and workers.
+- Works like pub/sub with a channel name.
+
+Core Methods
+- new BroadcastChannel(name)
+- channel.postMessage(data)
+- channel.onmessage = (event) => {}
+- channel.close()
+
+Interview Notes
+- Only same-origin contexts can communicate.
+- Not supported in all older browsers.
+- Useful for logout sync across tabs, shared notifications, and real-time tab coordination.

@@ -78,11 +78,11 @@
 | requestAnimationFrame | ⚠️ | Not explicitly covered | 🎯 |
 | Service Worker | ⚠️ | Theory covered (offline, caching, push); practical pending | 🎯 |
 | Web Worker | ⚠️ | Theory covered (background threads, messaging); practical pending | 🎯 |
-| BroadcastChannel | ❌ | Cross-tab messaging | - |
-| History API | ❌ | Navigation state management | ⚠️ |
-| postMessage | ❌ | Cross-origin/cross-worker messaging | ⚠️ |
-| IndexedDB | ❌ | Client-side database | ⚠️ |
-| Cache API | ❌ | Service Worker caching | 🎯 |
+| BroadcastChannel | ✅ | Practical demo added in BrowserAPIs/BroadcastChannel (cross-tab messaging) | - |
+| History API | ✅ | Practical demo added in BrowserAPIs/HistoryAPI (pushState/replaceState/popstate) | ⚠️ |
+| postMessage | ✅ | Parent-child window messaging practical added in BrowserAPIs/postMessage | ⚠️ |
+| IndexedDB | ✅ | CRUD-style practical added in BrowserAPIs/IndexedDB | ⚠️ |
+| Cache API | ✅ | Request/Response caching practical added in BrowserAPIs/CacheAPI | 🎯 |
 
 ---
 

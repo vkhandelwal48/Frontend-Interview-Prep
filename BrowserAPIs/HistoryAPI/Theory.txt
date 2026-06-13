@@ -1,0 +1,14 @@
+History API
+- Lets you manipulate browser session history without full page reload.
+- Used heavily in SPA routers.
+
+Core Methods
+- history.pushState(state, title, url)
+- history.replaceState(state, title, url)
+- window.onpopstate / addEventListener('popstate', ...)
+- history.back(), history.forward(), history.go(n)
+
+Interview Notes
+- pushState/replaceState do not trigger network navigation by default.
+- popstate fires on back/forward navigation.
+- Store only serializable and lightweight state objects.

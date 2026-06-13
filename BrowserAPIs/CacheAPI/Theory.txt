@@ -1,0 +1,14 @@
+Cache API
+- Key-value storage for Request/Response pairs.
+- Commonly used in Service Workers for offline-first caching.
+
+Core Methods
+- caches.open(cacheName)
+- cache.put(request, response)
+- cache.match(request)
+- caches.delete(cacheName)
+
+Interview Notes
+- Different from HTTP cache; gives explicit app-level control.
+- Stores full Response objects (including headers/body).
+- Core building block for stale-while-revalidate and cache-first strategies.

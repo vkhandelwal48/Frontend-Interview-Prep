@@ -1,0 +1,12 @@
+window.postMessage API
+- Safe cross-window and cross-origin messaging mechanism.
+- Common between parent-iframe, iframe-parent, and popup windows.
+
+Core Syntax
+- targetWindow.postMessage(message, targetOrigin)
+- window.addEventListener('message', (event) => {})
+
+Interview Notes
+- Always validate event.origin before using event.data.
+- Set strict targetOrigin (avoid '*').
+- Works with structured clone, so complex objects can be passed.

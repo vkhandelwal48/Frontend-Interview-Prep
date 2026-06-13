@@ -1,0 +1,13 @@
+IndexedDB API
+- Low-level NoSQL-like client-side database built into browsers.
+- Asynchronous and transaction based.
+
+Core Concepts
+- Database -> Object Store -> Records (key-value)
+- Versioning with onupgradeneeded
+- Transactions: readonly/readwrite
+
+Interview Notes
+- Better than localStorage for large, structured, queryable offline data.
+- Common use cases: offline-first apps, caching large API payloads, drafts, media metadata.
+- Uses indexes for fast lookups.

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History API Demo</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1>History API</h1>
+    <p id="routeLabel">Current route: /</p>
+
+    <button data-route="/home">Push /home</button>
+    <button data-route="/profile">Push /profile</button>
+    <button data-route="/settings">Replace /settings</button>
+    <button id="backBtn">Back</button>
+
+    <pre id="statePreview"></pre>
+  </body>
+</html>
