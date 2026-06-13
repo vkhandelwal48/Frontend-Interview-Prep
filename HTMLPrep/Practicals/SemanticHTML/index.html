@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic HTML Demo</title>
+  </head>
+  <body>
+    <header>
+      <h1>News Daily</h1>
+      <nav aria-label="Main navigation">
+        <a href="#top-stories">Top Stories</a>
+        <a href="#tech">Tech</a>
+        <a href="#sports">Sports</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="top-stories" aria-labelledby="top-heading">
+        <h2 id="top-heading">Top Stories</h2>
+        <article>
+          <h3>Semantic tags improve document structure</h3>
+          <p>Use article, section, main, header, footer, and nav where appropriate.</p>
+        </article>
+      </section>
+
+      <aside aria-label="Trending topics">
+        <h2>Trending</h2>
+        <ul>
+          <li>Web Components</li>
+          <li>Core Web Vitals</li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <small>Copyright 2026 News Daily</small>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas and SVG Demo</title>
+  </head>
+  <body>
+    <h1>Canvas and SVG</h1>
+
+    <h2>Canvas</h2>
+    <canvas id="chart" width="320" height="140" style="border: 1px solid #d1d5db;"></canvas>
+
+    <h2>SVG</h2>
+    <svg width="320" height="140" viewBox="0 0 320 140" aria-label="Simple SVG chart">
+      <polyline points="20,110 90,70 160,85 230,40 300,55" fill="none" stroke="#2563eb" stroke-width="4" />
+      <circle cx="230" cy="40" r="6" fill="#ef4444" />
+    </svg>
+
+    <script>
+      const canvas = document.getElementById('chart');
+      const ctx = canvas.getContext('2d');
+      const points = [110, 70, 85, 40, 55];
+
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      points.forEach((value, index) => {
+        const x = 20 + index * 70;
+        const y = value;
+        if (index === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+      ctx.stroke();
+    </script>
+  </body>
+</html>

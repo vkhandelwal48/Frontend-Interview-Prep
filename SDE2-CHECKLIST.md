@@ -30,12 +30,12 @@
 
 | Topic | Status | Notes | Priority |
 |-------|--------|-------|----------|
-| Semantic HTML | ⚠️ | Basic coverage in theory | 🎯 |
-| Accessibility (a11y) | ❌ | ARIA roles, landmarks, keyboard nav | 🎯 |
-| Forms & Input Validation | ⚠️ | Theory incomplete, no practical | 🎯 |
-| Meta Tags & SEO | ⚠️ | async/defer, preload covered; deep SEO missing | ⚠️ |
-| Web Components | ❌ | Custom elements, shadow DOM | - |
-| Canvas & SVG | ⚠️ | Theory mentioned; no deep dives | ⚠️ |
+| Semantic HTML | ✅ | Practical semantic page structure added in HTMLPrep/Practicals/SemanticHTML | 🎯 |
+| Accessibility (a11y) | ✅ | Skip link, landmarks, ARIA states, and keyboard-focused practical added in HTMLPrep/Practicals/Accessibility | 🎯 |
+| Forms & Input Validation | ✅ | Constraint validation practical added in HTMLPrep/Practicals/FormsValidation | 🎯 |
+| Meta Tags & SEO | ✅ | Interview-ready metadata template practical added in HTMLPrep/Practicals/MetaTagsSEO | ⚠️ |
+| Web Components | ✅ | Custom element + shadow DOM practical added in HTMLPrep/Practicals/WebComponents | - |
+| Canvas & SVG | ✅ | Canvas drawing + SVG vector practical added in HTMLPrep/Practicals/CanvasAndSVG | ⚠️ |
 | Performance: async/defer/preload | ✅ | Comprehensive coverage | 🎯 |
 
 ---
@@ -257,22 +257,22 @@
 
 | Category | Strong | Partial | Missing | Total |
 |----------|--------|---------|---------|-------|
-| JavaScript | 13 | 2 | 1 | 16 |
-| HTML & a11y | 1 | 3 | 3 | 7 |
-| CSS & Layout | 8 | 4 | 2 | 14 |
-| Browser APIs | 8 | 6 | 3 | 17 |
-| Real-Time | 4 | 0 | 0 | 4 |
+| JavaScript | 13 | 1 | 2 | 16 |
+| HTML & a11y | 7 | 0 | 0 | 7 |
+| CSS & Layout | 13 | 0 | 0 | 13 |
+| Browser APIs | 13 | 6 | 0 | 19 |
+| Real-Time | 5 | 0 | 0 | 5 |
 | TypeScript | 0 | 0 | 10 | 10 |
 | Testing | 0 | 0 | 8 | 8 |
 | Performance | 10 | 1 | 0 | 11 |
 | Security | 10 | 0 | 0 | 10 |
-| System Design | 9 | 1 | 0 | 10 |
+| System Design | 11 | 0 | 0 | 11 |
 | Architecture | 9 | 0 | 0 | 9 |
-| React Advanced | 1 | 4 | 0 | 5 |
+| React Advanced | 1 | 7 | 0 | 8 |
 | Production | 0 | 1 | 5 | 6 |
 | Machine-Coding | 6 | 0 | 1 | 7 |
-| Misc | 0 | 1 | 1 | 2 |
-| **TOTAL** | **80** | **30** | **27** | **137** |
+| Misc | 0 | 2 | 3 | 5 |
+| **TOTAL** | **98** | **18** | **29** | **145** |
 
 ---
 
@@ -281,9 +281,9 @@
 **High Impact, Currently Missing (Start Here):**
 1. TypeScript (10 topics) — Critical for SDE-2 coding rounds
 2. Testing (8 topics) — Expected to write & discuss tests
-3. Browser APIs: PerformanceObserver + remaining advanced APIs (4 topics) — Common interview questions
-4. Security: XSS, CSRF, CSP, token storage (6 topics) — Production concerns
-5. Performance: Core Web Vitals, memory profiling, bundle analysis (6 topics) — System design component
+3. Production frontend patterns (5 topics) — Real-world reliability and rollout readiness
+4. JavaScript gaps: Regular Expressions + Symbols/BigInt — Frequent language-level interview checks
+5. Tooling/diagnostics gaps: DevTools, network waterfall, accessibility testing tools — Debugging rounds leverage these heavily
 
 **Medium Impact, Partial Coverage (Strengthen):**
 - Performance optimization workflows (profiling, measurement)
@@ -302,7 +302,7 @@
 
 1. **Week 1–2:** TypeScript fundamentals + React integration
 2. **Week 3:** Testing (Jest, React Testing Library, E2E)
-3. **Week 4:** Browser APIs deep dive (PerformanceObserver + remaining advanced APIs)
-4. **Week 5:** Security patterns + performance profiling
+3. **Week 4:** Production patterns (error handling, feature flags, release strategy)
+4. **Week 5:** Debugging workflows (DevTools, network analysis, accessibility test tooling)
 5. **Week 6+:** Machine-coding timed builds + mock interviews
 

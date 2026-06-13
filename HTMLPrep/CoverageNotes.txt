@@ -1,0 +1,7 @@
+HTMLPrep Coverage Notes
+- Semantic HTML: practical structure with landmarks and article/section usage in HTMLPrep/Practicals/SemanticHTML.
+- Accessibility: skip link, focus-visible, ARIA states, keyboard-friendly controls in HTMLPrep/Practicals/Accessibility.
+- Forms & Input Validation: constraint validation API and custom validation feedback in HTMLPrep/Practicals/FormsValidation.
+- Meta Tags & SEO: practical head metadata template in HTMLPrep/Practicals/MetaTagsSEO.
+- Web Components: custom element with shadow DOM in HTMLPrep/Practicals/WebComponents.
+- Canvas & SVG: basic drawing and vector example in HTMLPrep/Practicals/CanvasAndSVG.

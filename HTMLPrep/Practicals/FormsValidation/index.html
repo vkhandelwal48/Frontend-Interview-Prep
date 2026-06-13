@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms Validation Demo</title>
+  </head>
+  <body>
+    <h1>Form Validation</h1>
+
+    <form id="signupForm" novalidate>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required />
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        required
+        minlength="8"
+        pattern="(?=.*[A-Z])(?=.*\d).+"
+      />
+
+      <button type="submit">Submit</button>
+      <p id="error" aria-live="polite"></p>
+    </form>
+
+    <script>
+      const form = document.getElementById('signupForm');
+      const error = document.getElementById('error');
+
+      form.addEventListener('submit', (event) => {
+        error.textContent = '';
+
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          error.textContent = 'Please provide a valid email and a strong password.';
+          return;
+        }
+
+        event.preventDefault();
+        error.textContent = 'Form valid. Ready for API submission.';
+      });
+    </script>
+  </body>
+</html>

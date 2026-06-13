@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Components Demo</title>
+  </head>
+  <body>
+    <h1>Web Components</h1>
+    <status-badge label="Build" state="success"></status-badge>
+
+    <script>
+      class StatusBadge extends HTMLElement {
+        connectedCallback() {
+          const shadow = this.attachShadow({ mode: 'open' });
+          const label = this.getAttribute('label') || 'Status';
+          const state = this.getAttribute('state') || 'idle';
+          const color = state === 'success' ? '#059669' : '#6b7280';
+
+          shadow.innerHTML = `
+            <style>
+              .badge {
+                display: inline-block;
+                padding: 6px 10px;
+                border-radius: 999px;
+                color: white;
+                font-family: Arial, sans-serif;
+                background: ${color};
+              }
+            </style>
+            <span class="badge">${label}: ${state}</span>
+          `;
+        }
+      }
+
+      customElements.define('status-badge', StatusBadge);
+    </script>
+  </body>
+</html>

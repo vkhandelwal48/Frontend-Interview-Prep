@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility Demo</title>
+    <style>
+      :focus-visible {
+        outline: 3px solid #2563eb;
+        outline-offset: 2px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: #111827;
+        color: #fff;
+        padding: 8px;
+      }
+
+      .skip-link:focus {
+        left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#content" class="skip-link">Skip to content</a>
+
+    <header>
+      <h1>Accessibility Landmarks</h1>
+    </header>
+
+    <nav aria-label="Primary">
+      <button aria-expanded="false" aria-controls="menu-list" id="menuBtn">Menu</button>
+      <ul id="menu-list" hidden>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Docs</a></li>
+      </ul>
+    </nav>
+
+    <main id="content" tabindex="-1">
+      <h2>Keyboard Navigation</h2>
+      <label for="nameInput">Name</label>
+      <input id="nameInput" type="text" aria-describedby="nameHint" />
+      <p id="nameHint">Enter your full name.</p>
+    </main>
+
+    <script>
+      const button = document.getElementById('menuBtn');
+      const list = document.getElementById('menu-list');
+
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!expanded));
+        list.hidden = expanded;
+      });
+    </script>
+  </body>
+</html>
