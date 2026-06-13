@@ -68,13 +68,13 @@
 | Event Handling | ✅ | Event loop, delegation, bubbling, preventDefault/propagation practicals covered | 🎯 |
 | localStorage & sessionStorage | ✅ | Comparison provided | 🎯 |
 | Cookies | ⚠️ | SameSite/Secure coverage sparse | 🎯 |
-| Fetch API | ⚠️ | Basic coverage; error handling/retries sparse | 🎯 |
+| Fetch API | ✅ | Basic coverage; error handling covered | 🎯 |
 | XMLHttpRequest | ⚠️ | Legacy; light coverage | ⚠️ |
 | CORS | ✅ | Preflight, credentials, headers comprehensive | 🎯 |
 | IntersectionObserver | ✅ | Lazy loading, infinite scroll, analytics | 🎯 |
 | MutationObserver | ✅ | DOM change detection covered | 🎯 |
 | ResizeObserver | ✅ | Element size tracking covered | - |
-| PerformanceObserver | ❌ | Core Web Vitals, metrics | 🎯 |
+| PerformanceObserver | ✅ | Core Web Vitals, metrics, buffered entries, dropped count tracking | 🎯 |
 | requestAnimationFrame | ⚠️ | Not explicitly covered | 🎯 |
 | Service Worker | ⚠️ | Theory covered (offline, caching, push); practical pending | 🎯 |
 | Web Worker | ⚠️ | Theory covered (background threads, messaging); practical pending | 🎯 |
@@ -260,7 +260,7 @@
 | JavaScript | 13 | 2 | 1 | 16 |
 | HTML & a11y | 1 | 3 | 3 | 7 |
 | CSS & Layout | 8 | 4 | 2 | 14 |
-| Browser APIs | 6 | 7 | 4 | 17 |
+| Browser APIs | 8 | 6 | 3 | 17 |
 | Real-Time | 4 | 0 | 0 | 4 |
 | TypeScript | 0 | 0 | 10 | 10 |
 | Testing | 0 | 0 | 8 | 8 |
@@ -272,7 +272,7 @@
 | Production | 0 | 1 | 5 | 6 |
 | Machine-Coding | 6 | 0 | 1 | 7 |
 | Misc | 0 | 1 | 1 | 2 |
-| **TOTAL** | **78** | **31** | **28** | **137** |
+| **TOTAL** | **80** | **30** | **27** | **137** |
 
 ---
 
