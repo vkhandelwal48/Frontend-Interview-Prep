@@ -1,0 +1,29 @@
+Event Bubbling
+Event bubbling is a phase in the event propagation model in the Document Object Model (DOM) of web browsers. 
+In the event bubbling phase, an event starts from the target element that triggered the event and then bubbles 
+up through its ancestors in the DOM hierarchy. This allows parent elements to have an opportunity to respond to the event.
+
+event bubbling process:
+1) Event Triggering:
+
+An event is triggered on a specific target element, such as a button being clicked or a form being submitted.
+2) Event Capturing Phase:
+
+The event starts its journey from the root of the DOM tree and travels down to the target element. This is known as the capturing phase. During this phase, the ancestors of the target element have the opportunity to capture the event before it reaches the target.
+3) Target Element:
+
+The event reaches the target element, and any event handlers attached to the target are executed.
+4) Event Bubbling Phase:
+
+After the event has been processed at the target, it starts bubbling up through the ancestors in the reverse order of the DOM hierarchy. This is the event bubbling phase.
+5) Ancestor Elements:
+
+During the bubbling phase, each ancestor element has the opportunity to handle the event. Event handlers on ancestor elements can respond to the event, providing an opportunity for delegation or handling events at a higher level.
+6) Document Root:
+
+The event eventually reaches the document root.
+
+Event delegation
+Event delegation is a JavaScript pattern where you attach one event listener to a parent element 
+instead of adding listeners to many child elements, and then use event bubbling to handle events
+from those children.

@@ -1,0 +1,13 @@
+Web Workers
+Web Workers allow Javascript code to run in a background thread, separate from the main(UI) thread.
+
+How They Work
+The main thread creates a worker.
+The worker runs in a seprate thread(no access to DOM Directly).
+They communicate via messages(using postMessage() and onmessage()).
+
+Service Worker (Special Case)
+A Service Worker is like a proxy between your web app and the network:
+a. Can intercept fetch requests
+b. Cache responses for offline access
+c. Enable background sync, push notifications.
