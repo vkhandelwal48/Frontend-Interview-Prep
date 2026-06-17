@@ -1,0 +1,69 @@
+JWT vs Cookies
+
+Important first point:
+- JWT and Cookies are not exact alternatives. JWT is a token format; Cookies are a browser storage and transport mechanism.
+- In practice, many apps store JWT in Cookies.
+
+Quick Difference Table
+
+1) What they are
+- JWT: A self-contained token (header.payload.signature) that carries claims.
+- Cookie: A small key-value data item managed by the browser and sent automatically with matching requests.
+
+2) Where data lives
+- JWT: Usually stored in memory, localStorage, sessionStorage, or Cookie.
+- Cookie: Stored by browser cookie jar.
+
+3) How it is sent to server
+- JWT: If in header, client sends manually (Authorization: Bearer <token>).
+- Cookie: Browser sends automatically with every matching domain/path request.
+
+4) CSRF vs XSS risk
+- JWT in localStorage/sessionStorage: Not vulnerable to CSRF (not auto-sent), but vulnerable to XSS token theft.
+- Cookie (HttpOnly): Better against XSS token theft (JS cannot read), but auto-send means CSRF protection is required.
+
+5) Revocation and logout
+- Stateless JWT access token: Harder to revoke before expiry unless blacklist/rotation is used.
+- Server session with cookie: Easy revoke by deleting/invalidation on server session store.
+
+6) Scalability
+- JWT: Good for stateless distributed systems (no session lookup required).
+- Cookie + server session: Needs shared session store or sticky sessions in multi-instance setup.
+
+7) Size and overhead
+- JWT can become large if many claims are included.
+- Cookies also have size limits (~4KB per cookie), so large JWT in cookie can be problematic.
+
+When to use what
+
+- Use Cookie-based session auth when:
+	- You want simpler browser auth.
+	- You need easy session invalidation.
+	- You can manage CSRF tokens and cookie flags.
+
+- Use JWT (often with refresh token) when:
+	- You have microservices/mobile APIs.
+	- You want stateless auth checks.
+	- You can design secure rotation and expiry strategy.
+
+Recommended secure setup (modern web app)
+
+- Access token: short expiry (for example 5-15 min).
+- Refresh token: HttpOnly, Secure, SameSite cookie.
+- Rotate refresh tokens.
+- Add CSRF protection for state-changing requests if cookie auth is used.
+- Always use HTTPS.
+
+Cookie flags to remember
+
+- HttpOnly: blocks JavaScript access.
+- Secure: cookie sent only over HTTPS.
+- SameSite:
+	- Strict: strongest CSRF protection, strict cross-site behavior.
+	- Lax: balanced default in many cases.
+	- None: required for cross-site use, must also set Secure.
+
+Interview one-liner
+
+- JWT is a token format; Cookie is a transport/storage mechanism.
+- Security is not JWT vs Cookie; security depends on storage choice, token lifetime, CSRF/XSS defenses, and overall implementation.
