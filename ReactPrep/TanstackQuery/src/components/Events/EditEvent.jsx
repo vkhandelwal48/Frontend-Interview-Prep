@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { fetchEvent, updateEvent } from '../../util/http.js';
+import { fetchEvent, updateEvent, queryClient } from '../../util/http.js';
 
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
@@ -18,6 +18,21 @@ export default function EditEvent() {
 
   const { mutate } = useMutation({
     mutationFn: updateEvent,
+    onMutate: async (data) => {
+      const newEvent = data.event;
+      await queryClient.cancelQueries({ queryKey: ['events', id] }); 
+      const previousEvent = queryClient.getQueryData(['events', id]);
+      queryClient.setQueryData(['events', id], newEvent);
+      return { previousEvent }; // Return the previous event data so we can roll back if the mutation fails
+    },
+    onError: (error, data, context) => {
+      queryClient.setQueryData(['events', id], context.previousEvent); // Roll back to the previous event data if the mutation fails
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['events', id],
+      });// Refetch the event data after the mutation is complete
+    }
   })
 
   function handleSubmit(formData) {
@@ -56,7 +71,7 @@ export default function EditEvent() {
 
   if (data) {
     content = (
-      <EventForm inputData={null} onSubmit={handleSubmit}>
+      <EventForm inputData={data} onSubmit={handleSubmit}>
         <Link to="../" className="button-text">
           Cancel
         </Link>

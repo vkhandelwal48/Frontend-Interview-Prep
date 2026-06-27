@@ -555,4 +555,14 @@ something on your backend. Not about getting and storing data in your frontend.
 
 isPending(useMutation) -> will be true if the request is currently on its way and false otherwise
 isError -> Same as useQuery
-error -> container Error detail 
+error -> container Error detail
+
+Optimistic updating
+Update the UI instantly without waiting for response from backend. If my backend turns out to fail,
+I simply want to rollback the optimistic update i performed.
+
+onMutate() -> This function will be executed right when you call mutate.
+cancelQueries-> Will cancel any outing refetches so they don't overwrite our optimistic update and
+  will not cancel any ongoing mutations.
+getQueryData-> Get the previous event data from the cache
+setQueryData -> Optimistically update the cache with the new event data
