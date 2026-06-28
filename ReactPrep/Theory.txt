@@ -577,3 +577,13 @@ introduce some lag and slow down your website and it can therefore lead to subop
 only one initial HTML request & response.
 -> Page(URL) changes are then handled by client-side React code.
 -> Visible content is changed without fetching a new HTML file.
+
+<a> -> We are sending a new request to the server that's serving this website. That server will serve back
+that single HTML page. What exactly happens under the hood is that we load all the JavaScript Code again,
+load the entire React Application again and restart the React Application. That's a lot of unnecessary work
+that can also impact the site performance.
+
+<Link> -> Use it instead of default anchor element. It does render an anchor element but it basically listens
+for clicks on that element. Prevents the browser default of sending a HTTP request if the link is clicked.
+And instead takes a look at the route definitions to update the page accordingly and load the approriate content.
+It also change the URL but without sending a new HTTP request.
