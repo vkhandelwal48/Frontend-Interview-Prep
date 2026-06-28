@@ -566,3 +566,14 @@ cancelQueries-> Will cancel any outing refetches so they don't overwrite our opt
   will not cancel any ongoing mutations.
 getQueryData-> Get the previous event data from the cache
 setQueryData -> Optimistically update the cache with the new event data
+
+Routing
+Different URL paths load different content on the screen.
+
+A new HTTP request is sent and a new response is received. That can break user flow and it can
+introduce some lag and slow down your website and it can therefore lead to suboptimal user experience.
+
+-> So when building complex user interfaces, we typically build Single Page Applications. With those you
+only one initial HTML request & response.
+-> Page(URL) changes are then handled by client-side React code.
+-> Visible content is changed without fetching a new HTML file.
