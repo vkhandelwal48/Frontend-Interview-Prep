@@ -587,3 +587,5 @@ that can also impact the site performance.
 for clicks on that element. Prevents the browser default of sending a HTTP request if the link is clicked.
 And instead takes a look at the route definitions to update the page accordingly and load the approriate content.
 It also change the URL but without sending a new HTTP request.
+
+<Outlet> -> Marks the place where the child route elements should be rendered to.
