@@ -589,3 +589,10 @@ And instead takes a look at the route definitions to update the page accordingly
 It also change the URL but without sending a new HTTP request.
 
 <Outlet> -> Marks the place where the child route elements should be rendered to.
+
+<NavLink> -> To support links that should show us whether they led to the currently active page or not 'react-router-dom'
+has an alternative to the <Link> component. It is used just like link. But it has one special behavior if you add a
+className prop to it. It's actually not a regular className prop which takes a string but instead it's a prop that takes a
+function and that function should return the className that should be added to the anchor tag. That function also automatically
+receives an object from which we can destructure 'isActive' property. This property is provided by 'react-router-dom'. 'isActive'
+is a boolean that is true if this link is currently active or vice versa.
