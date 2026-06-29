@@ -596,3 +596,5 @@ className prop to it. It's actually not a regular className prop which takes a s
 function and that function should return the className that should be added to the anchor tag. That function also automatically
 receives an object from which we can destructure 'isActive' property. This property is provided by 'react-router-dom'. 'isActive'
 is a boolean that is true if this link is currently active or vice versa.
+
+useNavigate -> Triggers a navigation action from inside your code programmatically.
