@@ -602,3 +602,6 @@ useNavigate -> Triggers a navigation action from inside your code programmatical
 relative property in Link -> This can be set to two values:
 i -> path = It will simply remove one segment from that path.
 ii -> route = It is by default.
+
+index property -> This turns route into so-called index route. Which simply means it's the default route that should be displayed
+if the parent route's path is currently active.
