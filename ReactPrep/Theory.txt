@@ -598,3 +598,7 @@ receives an object from which we can destructure 'isActive' property. This prope
 is a boolean that is true if this link is currently active or vice versa.
 
 useNavigate -> Triggers a navigation action from inside your code programmatically.
+
+relative property in Link -> This can be set to two values:
+i -> path = It will simply remove one segment from that path.
+ii -> route = It is by default.
