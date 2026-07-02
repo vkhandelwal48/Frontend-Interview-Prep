@@ -39,7 +39,20 @@ const router = createBrowserRouter([
         path: 'events',
         element: <EventsRootLayout />,
         children: [
-          { index: true, element: <Events /> },
+          {
+            index: true,
+            element: <Events />,
+            loader: async () => {
+              const response = await fetch('http://localhost:8080/events');
+
+              if (!response.ok) {
+                // ...
+              } else {
+                const resData = await response.json();
+                return resData.events;
+              }
+            },
+          },
           { path: ':eventId', element: <EventDetail /> },
           { path: 'new', element: <NewEvent /> },// It would prefer this over the dynamic route, so we need to make sure that this route is defined before the dynamic route.
           { path: ':eventId/edit', element: <EditEvent /> },
