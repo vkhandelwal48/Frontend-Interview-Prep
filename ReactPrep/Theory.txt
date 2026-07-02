@@ -610,3 +610,12 @@ loader() -> Will be executed by React Router whenever you are about to visit thi
 your data. The return value in this function will available to React Component where you render and in all components that might
 be used inside that element. Async Await Returns a promise. But 'react-router-dom' here will actually check. If a promise is
 returned and automatically get the resolved data from that promise for you. We can't get those data in the higher level routes.
+
+When are loader() executed?
+-> loader() for a page will be called right when we start navigating to that page. React will wait for data to fetched and then
+only render the component.
+
+Advantage: You can reply on the data being there once the component is being rendered. You don't need to worry about whether the
+data is there yet or not. And therefore you don't need to render a loading state in this component.
+
+Disadvantage: We have this delay where it looks to the user as if nothing is happening.
