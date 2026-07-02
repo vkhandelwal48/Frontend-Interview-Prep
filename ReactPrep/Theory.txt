@@ -607,6 +607,6 @@ index property -> This turns route into so-called index route. Which simply mean
 if the parent route's path is currently active.
 
 loader() -> Will be executed by React Router whenever you are about to visit this route. In this function you can load and fetch
-your data. The return value in this function will available to React Component where you render and any other component as well.
-Async Await Returns a promise. But 'react-router-dom' here will actually check. If a promise is returned and automatically get the
-resolved data from that promise for you.
+your data. The return value in this function will available to React Component where you render and in all components that might
+be used inside that element. Async Await Returns a promise. But 'react-router-dom' here will actually check. If a promise is
+returned and automatically get the resolved data from that promise for you. We can't get those data in the higher level routes.
