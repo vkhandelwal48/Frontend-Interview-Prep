@@ -619,3 +619,15 @@ Advantage: You can reply on the data being there once the component is being ren
 data is there yet or not. And therefore you don't need to render a loading state in this component.
 
 Disadvantage: We have this delay where it looks to the user as if nothing is happening.
+
+How can we give the user some feedback that something is going on here after clicking on Events?
+React Router gives us a special hook which we can use to check the current route transitions state. So to find out if the transition
+has been initiated and we are currently still waiting for data to arrive or if we are done.
+
+useNavigation hook lets us find out whether we are currently in active transition, if we are loading data or if we have no active
+transition going on.
+
+It gives us navigation state. Which has 3 values:
+i-> idle
+ii-> loading
+iii-> submitting
