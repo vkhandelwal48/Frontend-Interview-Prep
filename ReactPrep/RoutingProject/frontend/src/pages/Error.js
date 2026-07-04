@@ -9,6 +9,7 @@ function Error() {
 
   if (error.status === 500) {
     message = JSON.parse(error.data).message;
+    // message = error.data.message; // in case of json
   }
 
   if (error.status === 404) {
