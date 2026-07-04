@@ -48,11 +48,17 @@ const router = createBrowserRouter([
           },
           {
             path: ':eventId',
-            element: <EventDetail />,
-            loader: eventDetailLoader
+            id: 'event-detail',
+            loader: eventDetailLoader,
+            children: [
+              {
+                index: true,
+                element: <EventDetail />,
+              },
+              { path: 'edit', element: <EditEvent /> },
+            ],
           },
           { path: 'new', element: <NewEvent /> },// It would prefer this over the dynamic route, so we need to make sure that this route is defined before the dynamic route.
-          { path: ':eventId/edit', element: <EditEvent /> },
         ]
       },
     ]
