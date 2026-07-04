@@ -631,3 +631,7 @@ It gives us navigation state. Which has 3 values:
 i-> idle
 ii-> loading
 iii-> submitting
+
+Which Kind Of Code Goes Into loader()s?
+loader() code executes in browser not on server. You can access local storage and cookies and other Js code as well.
+What we can't do is use React Hooks like useState. Because those hooks are only available in React Components.
