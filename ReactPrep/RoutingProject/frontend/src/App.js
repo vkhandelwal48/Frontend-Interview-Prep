@@ -11,6 +11,7 @@ import EditEvent from "./pages/EditEvent";
 import RootLayout from "./pages/RootLayout";
 import EventsRootLayout from "./pages/EventsRoot";
 import { action as manipulateEventAction } from "./components/EventForm";
+import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 
 // Challenge / Exercise
 
@@ -73,6 +74,11 @@ const router = createBrowserRouter([
             action: manipulateEventAction
           },// It would prefer this over the dynamic route, so we need to make sure that this route is defined before the dynamic route.
         ]
+      },
+      {
+        path: 'newsletter',
+        element: <NewsletterPage />,
+        action: newsletterAction,
       },
     ]
   }
