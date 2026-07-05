@@ -6,10 +6,11 @@ import EventDetail, {
   loader as eventDetailLoader,
   action as deleteEventAction
 } from "./pages/EventDetail";
-import NewEvent, { action as newEventAction } from "./pages/NewEvent";
+import NewEvent from "./pages/NewEvent";
 import EditEvent from "./pages/EditEvent";
 import RootLayout from "./pages/RootLayout";
 import EventsRootLayout from "./pages/EventsRoot";
+import { action as manipulateEventAction } from "./components/EventForm";
 
 // Challenge / Exercise
 
@@ -59,10 +60,18 @@ const router = createBrowserRouter([
                 element: <EventDetail />,
                 action: deleteEventAction,
               },
-              { path: 'edit', element: <EditEvent /> },
+              {
+                path: 'edit',
+                element: <EditEvent />,
+                action: manipulateEventAction
+              },
             ],
           },
-          { path: 'new', element: <NewEvent />, action: newEventAction },// It would prefer this over the dynamic route, so we need to make sure that this route is defined before the dynamic route.
+          {
+            path: 'new',
+            element: <NewEvent />,
+            action: manipulateEventAction
+          },// It would prefer this over the dynamic route, so we need to make sure that this route is defined before the dynamic route.
         ]
       },
     ]
