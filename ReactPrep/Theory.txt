@@ -638,3 +638,11 @@ What we can't do is use React Hooks like useState. Because those hooks are only 
 
 When an error gets thrown in a loader() something special happens. React Router will simply render the closest error element.
 Error element will be shown to the screen whenever an error is generated in any route related code, including loaders.
+
+useFetcher Hook
+When executed give you an object. This object includes a bunch of useful properties and methods. eg-> Form
+Component and submit function which different from our regular one's.
+
+-> If we use fetcher.Form Component then this will actually still trigger an action. But it will not initialize a route transition.
+-> So Fetcher should basically be used whenever you want to trigger an action or also a loader with the help of load function without
+actually navigating. To the page to which the loader belongs or to the page to which the action belongs.
