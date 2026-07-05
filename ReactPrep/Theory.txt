@@ -652,3 +652,6 @@ We tell react-router that we actually want to render a component already even th
 
 We pass an object to defer, and the values of the object can be promises. The keys of the object will be the keys of
 the data that we get in useLoaderData.
+
+Every Await block must be wrapped with its own Suspense component. Otherwsie Suspense will wait for all awaits to complete before
+showing anthing.
