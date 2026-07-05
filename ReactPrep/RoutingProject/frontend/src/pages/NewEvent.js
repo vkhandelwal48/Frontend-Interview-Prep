@@ -24,6 +24,10 @@ export async function action({ request, params }) {
     body: JSON.stringify(eventData),
   });
 
+  if (response.status === 422) {
+    return response;
+  } // we can also use action data in our pages and components to show validation errors
+
   if (!response.ok) {
     throw new Response(JSON.stringify({ message: 'Could not save event.' }), {
       status: 500,
