@@ -5,6 +5,27 @@ How React Updates the Website UI
 3-> Compare New Virtual DOM snapshot to Previous(Old) Virtual DOM Snapshot.
 4-> Identify & apply changes to the "Real DOM".
 
+How do you connect your React app to a database?
+-> You don't! At least not directly. Because if you try that you would run into security issues.
+
+All you React application code runs in the browsers of your users. So the users can view that code(via browser developer tools)
+if they want to!
+-> If That code contains the credentials to access a database. Your database can get compromised. Because users can retrieve
+those credentials and access your database to destroy data. Insert incorrect data, or do all kinds of bad things.
+
+Not all operations can be performed in the browser. eg-> You can't easily access a (centrally managed) file system. You don't have
+that capabilities in the browser.
+-> Therefore instead of directly accessing a database or some file system that may hold shared data. You instead communicate with a
+backend server. Which kind of acts as a middleman. So that your frontend React application which runs on the browser and where users
+can theoretically view the entire code. That application can reach out to a backend. So a seprate project running on a separate server,
+and it's then on that backend where you can interact with database. Because that backend code is inaccessible by the users of your
+website because only you the owner and developer, only you have access to the code on such a backend server.
+
+To connect frontend and backend you use HTTP requests. So that from inside your React application, you for example send an HTTP request
+to the backend to request some data or to request a change to some data. But what's super important, and safefty feature here is that
+you can only send HTTTP requests that are allowed and accepted by this backend. And if a backend doesn't want a certain request it's
+not possible and therefore you can control what users can do and can't do
+
 Keys
 
 -> if we use index here instead of unique id then when two items
