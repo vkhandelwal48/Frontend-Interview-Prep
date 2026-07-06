@@ -684,3 +684,5 @@ backend server needs to do some work and send back a response.And that all may t
 
 fetch()-> is a function provided by browser not by React. It can be used to send an HTTP request to some other server. This returns
 a promise.
+
+Component Functions can't be async. Which is the restriction by React.

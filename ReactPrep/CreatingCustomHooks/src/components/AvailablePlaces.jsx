@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Places from './Places.jsx';
 
 export default function AvailablePlaces({ onSelectPlace }) {
   const [availablePlaces, setAvailablePlaces] = useState([]);
 
-  fetch('http://localhost:3000/places').then((response) => {
-    response.json()
-  }).then((resData) => {
-    setAvailablePlaces(resData.places);
-  });// this code will be executed when the response is received from the server
-  // This code will create a infinite loop because the state is being updated on every render.
+  useEffect(() => {
+    fetch('http://localhost:3000/places').then((response) => {
+      return response.json()
+    }).then((resData) => {
+      setAvailablePlaces(resData.places);
+    });// this code will be executed when the response is received from the server
+    // This code will create a infinite loop because the state is being updated on every render.
+  }, []);
   // To fix this, we should use useEffect to fetch the data only once when the component mounts.
   return (
     <Places
