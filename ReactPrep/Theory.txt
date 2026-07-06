@@ -676,3 +676,11 @@ the data that we get in useLoaderData.
 
 Every Await block must be wrapped with its own Suspense component. Otherwsie Suspense will wait for all awaits to complete before
 showing anthing.
+
+Advantage of local storage is you can fetch data synchronously. You don't need to wait for it.
+
+In case of backend you are sending an HTTP request that needs to travel through the internet to that backend server and then that
+backend server needs to do some work and send back a response.And that all may take some time.
+
+fetch()-> is a function provided by browser not by React. It can be used to send an HTTP request to some other server. This returns
+a promise.
