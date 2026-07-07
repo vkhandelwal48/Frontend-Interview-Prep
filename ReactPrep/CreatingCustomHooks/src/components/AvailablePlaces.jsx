@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Places from './Places.jsx';
 import ErrorComponent from './Error.jsx';
+import { sortPlacesByDistance } from '../loc.js';
 
 export default function AvailablePlaces({ onSelectPlace }) {
   const [isFetching, setIsFetching] = useState(false);
@@ -20,11 +21,20 @@ export default function AvailablePlaces({ onSelectPlace }) {
           throw new Error('Failed to fetch places');
         }
 
-        setAvailablePlaces(resData.places);
+        navigator.geolocation.getCurrentPosition((position) => {
+          const sortedPlaces = sortPlacesByDistance(
+            resData.places,
+            position.coords.latitude,
+            position.coords.longitude
+          );
+          setAvailablePlaces(sortedPlaces);
+          setIsFetching(false);
+        });// this will be executed by the browser when the position has been fetched.
+        // we can't use async await here as getCurrentPosition does not return a promise, it uses a callback function instead.
       } catch (error) {
         setError({ message: error.message || 'Could not fetch places, please try again later' });
+        setIsFetching(false);
       }
-      setIsFetching(false);
     }
     fetchPlaces();
     // this code will be executed when the response is received from the server
