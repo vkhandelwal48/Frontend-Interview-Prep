@@ -38,7 +38,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
   // To fix this, we should use useEffect to fetch the data only once when the component mounts.
 
   if (error) {
-    return <ErrorComponent title="An error occurred!" message={error.message} onConfirm={() => setError(null)} />;
+    return <ErrorComponent title="An error occurred!" message={error.message} />;
   }
 
   return (
