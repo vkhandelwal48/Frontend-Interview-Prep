@@ -686,3 +686,19 @@ fetch()-> is a function provided by browser not by React. It can be used to send
 a promise.
 
 Component Functions can't be async. Which is the restriction by React.
+
+Why do we need Custom Hooks?
+The idea behind building Custom Hooks is always to wrap and reuse code. That goes into your component functions.
+
+If you use a Custom Hook in a component. Any state that is managed by that Custom Hook will also belong to the component in which you
+are using your Custom Hook. So therefore if the state gets updated in the Custom Hook. So when that happens then the component where
+your Custom Hook gets used also gets executed again. So that still works as if you would be managing the state directly inside of the
+component. That still works in exactly the same way.
+
+If you want to restrict the editing capabilities you could wrap the state updating function in a custom function that maybe adds some
+extra validation before the update is performed.
+
+What happens if you use this Custom Hook in other components as well. If we use it in another component and we then update the state
+from inside the app component. Will that affect other components?
+No, Because just as with components. Whenever you use them and it's the same for Custom Hooks, whenver you use them a brand new independent
+copy is created.
